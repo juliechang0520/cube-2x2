@@ -1,2 +1,3 @@
-Coverage [ 36, 31 ]
-PASS syntax, move identities, all three exercises, independent legal matching cases: [ 36, 31 ]
+Coverage [ 36, 31, 28, 25, 29 ]
+PASS syntax, move identities, all seven examples, independent legal matching cases: [ 36, 31, 28, 25, 29 ]
+PASS simulated DOM: seven cases, forward/reverse, completion guards, three checkpoint pauses and resumes. Not a browser/touch test.

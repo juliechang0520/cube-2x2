@@ -1,0 +1,2 @@
+Original animation source: https://juliechang0520.github.io/RubiksCube/
+Retrieved 2026-09-18. Integrated original CSS 3D Cube class, coordinate-to-CSS transforms and applyInstant method. Adaptations: 2x2 only, stable home identity for tracking, guarded transition completion, responsive sizing, 900ms turns, existing independent sticker-state engine retained for teaching and verification. Original page Lottie bundle and unrelated lesson content not copied.

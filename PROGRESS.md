@@ -1,64 +1,72 @@
-# 小小方塊 Little Cube — v0.4
-Checkpoint: 2026-09-18. Continues v0.3; all earlier versions preserved.
+# 小小方塊 Little Cube — v0.10
+Checkpoint: 2026-09-18. Continues v0.9; all earlier ZIPs preserved.
 
 ## Open / 開啟
-Unzip, then open index.html in a desktop browser. No installation or network dependencies. Upload index.html to your chosen GitHub Pages publishing directory for a public website; this version has NOT been published.
-解壓縮後開啟 index.html。純靜態單檔，尚未上傳 GitHub。
+Unzip and open index.html in a desktop browser. Pure static, no external network dependency. For GitHub Pages, use index.html as the publishing directory entry point. This package has not been published by the assistant.
 
-## Current implementation / 已完成
-- Interactive geometric 2×2 with drag, touch pointer handlers and keyboard view controls.
-- Exploration of six colors, six faces, eight corners; optional move notation.
-- Four-move warm-up, FIVE standardized cases for the last white corner of the first face, and a face-complete checkpoint.
-- Cases: bottom-front-right white front/right/down; top-front-right white right/front.
-- Preparation instructions: three white stickers up, missing corner at top-front-right; rotate only D to position a bottom-layer target at bottom-front-right.
-- Original schematic cards grey out non-white stickers; downward case adds a bottom-view diagram.
-- Exact intermediate D alignment and automatic playback pauses before the next case.
-- Variable-length sequences, previous/next, restart, pause/resume; duplicate controls directly below the cube for mobile convenience.
-- Responsive desktop columns and mobile stacking implemented.
+## v0.10 checkpoint / 本次新增
+- Face-on before/after diagrams for R, U, D, F and their inverse turns, with quarter-circle direction arrows.
+- Top-edge adjacency labels specify how to look at each face. The bottom view labels Front at its top edge; the upper view labels Back.
+- Custom white-only plans hide unspecified colors in both diagrams. Preset diagrams show example colors and explicitly say the real cube may differ.
+- Whole-cube x2 flip has separate wording and never uses a single-face arrow. Guides clear when the lesson completes or exploration opens.
+- Direction diagrams are live teaching aids, not MARU GIF copies. Exact MARU visual matching remains pending.
 
-## Evidence / 驗證
-Run node verify.cjs and node verify-controls.cjs.
-Math tests: quarter-turn identity and inverses; seven presets; 149 matching legal states across the five cases, including transition orientation and final white-face completion. Coverage [36,31,28,25,29]. Tests do not establish a full solver or full lesson coverage.
-Mock DOM tests: initialization, seven case selections, forward/reverse, completion guards, all three checkpoint pauses and resumes. This is not a real browser test.
+## v0.9 checkpoint / 本次新增
+- Three turn speeds: extra slow (1600 ms), slow (900 ms, default), normal (450 ms). Playback spacing follows the chosen speed; speed control is disabled during a turn.
+- Save completed-step checkpoints, current lesson/custom white plan, playback speed and tracking preference in this browser. No automatic playback on reopen.
+- Resume banner asks the learner to check the physical cube before resuming. Original planned white positions are saved independently of subsequent input-draft edits.
+- Startup does not overwrite the saved checkpoint. Corrupt/out-of-range data is rejected. If storage is blocked/full, practice continues with a visible save-status message.
+- Scope: same browser and website address. Private browsing, clearing site data, changing devices/URLs or moving a local HTML file may prevent restoration. This is not cross-device synchronization. Save is at completed moves, not midway through an animation.
+- Browser/phone visual QA is still pending. Automated checks use mock DOM/storage, not a real browser.
 
-## Browser status / 瀏覽器測試限制
-v0.1/v0.2 local Chromium missing; download attempt timed out.
-v0.3 cloud Browser skill successfully connected through node_repl, but navigation to the local HTML data URL was explicitly denied by browser URL security policy. No workaround attempted. Real browser rendering, mobile viewport screenshots and actual-phone touch testing remain UNVERIFIED. Do not repeat blocked navigation or claim these checks passed. A future permitted preview route must be established before real browser QA.
+## v0.8 checkpoint / 本次新增
+- 「用我的魔方開始」：在六面展開圖標記 4 格白色，驗證白色数量及同一角塊不能有兩格白色。
+- Arbitrary white-position input with explicit face orientation; nonwhite stickers shown gray, not inferred real colors.
+- Shortest search for each incremental segment. Each segment ends with more whites on top and preserves the previously occupied top slots. Intermediate moves may temporarily displace whites.
+- Playback pauses at segment boundaries. Previous/restart work with the generated plan. After white completion, re-match real side pairs in Layer; no assertion that the whole cube is solved.
+- Usage: open index.html → practice tab → “用我的魔方開始” → mark four whites → “產生我的步驟” → Next or Play. Example loads a practice input, not your physical cube.
 
-## Not completed / 尚未完成
-- Guided first one/two/three corner practice; highlighted individual corner tracking.
-- First-layer side matching and whole-cube flip are implemented in v0.4 (see below).
-- Second-layer orientation/permutation cases, full progressive lessons, voice.
-- Original Claude animation code integration. Current renderer is independently written Canvas, not claimed to reuse Claude code.
-- GitHub deployment and real-device QA.
-The first-face case library assumes three whites already on top; it is not a complete cube-solving course.
+## Completed / 已加入
+- Exploration: six faces/colors, eight corner pieces, draggable and keyboard-controlled 3D view.
+- NEW: connected first-, second-, third-white-corner preset exercises (1→2→3), then a link to last-corner case lookup. These are fixed practice setups, NOT a general solver for arbitrary scrambles.
+- First face: all five standardized last-corner cases plus completion check.
+- First layer: zero/one/four side-pair cases and whole-cube flip.
+- Yellow face: seven unsolved orientation classes and completed face; top-and-side yellow net, explicit U alignment and pause checkpoints.
+- Final layer: corner permutation, final U/U'/U U alignment and full-solved check.
+- Next-stage demo navigation, optional notation, previous/next, play/pause, restart.
+- NEW: original site's CSS 3D Cube engine integrated, configured for eight solid cubies, 900ms turns. See ANIMATION-SOURCE.md. Lottie and unrelated original lessons not included.
+- NEW: tracked corner outline on its three faces, next-turn layer highlight, clockwise/counterclockwise cue with face-relative wording, tracking toggle. Stable corner identity retained during turns.
+- Responsive CSS and nearby playback controls; real visual QA still outstanding.
 
-## Sources and scope / 參考與界線
-Reference animation: https://juliechang0520.github.io/RubiksCube/
-Method references:
+## Validation / 驗證
+- NEW verify-directions.cjs: clockwise/counterclockwise sticker mapping for R/U/D/F, arrow direction, preview non-mutation, custom colors, whole-cube branch and completion/exploration cleanup.
+- v0.10 re-ran verify-animation.cjs and verify-resume.cjs successfully.
+- Static SVG arrow geometry inspected after rasterization. The scratch renderer lacks Chinese glyphs; this is not browser typography/layout validation. Real browser and phone QA remain pending.
+- NEW verify-resume.cjs: reload/restore all 28 presets plus custom white plan; compare both independent sticker geometry and CSS cube state, step, speed and tracking. Verify paused restore, startup preservation, draft independence, previous/restart, corrupt records and unavailable storage.
+- verify-animation.cjs re-run after v0.9: all 28 forward/reverse examples still agree.
+- v0.8 exhaustive planner/pipeline results retained below; solver formulas were unchanged in v0.9.
+- verify-white.cjs: enumerates all 5,670 possible four-white position patterns with one white per corner; validates completion, increasing-white checkpoints and inverse-preset reconstruction. Mock UI entry checked.
+- verify-animation.cjs / verify-controls.cjs: mock DOM; original CSS 3D engine and independent sticker engine agree after EVERY forward and reverse step across 28 examples, including whole-cube flip. Intro ends at 1/2/3 white stickers with stable tracked identity. This does not test real browser rendering or physical touch.
+- verify-pipeline.cjs: all 648 last-layer states (27 orientations × 24 permutations) finish solved through orientation, corner permutation and alignment while keeping the bottom layer intact. Passed again after integration.
+- verify.cjs, verify-layer.cjs, verify-yellow.cjs retained for math checks.
+
+## Remaining / 未完成
+- Real browser screenshots, desktop/mobile RWD and touch QA. Earlier cloud-browser navigation to a local data URL was explicitly blocked by browser URL policy. Do not retry the blocked action or use an indirect workaround. A permitted preview route is needed.
+- First-face arbitrary white-position guidance is implemented in v0.8. Child usability of the six-face input still needs real testing.
+- Voice narration; child usability still requires testing. Face-on quarter-circle arrows implemented in v0.10; three playback speeds in v0.9.
+- Exact image-by-image MARU formula matching has not been completed. The layer-by-layer structure is retained, but case diagrams/text are original and formulas independently checked. The repeated corner swap is T-permutation, not claimed to match MARU's original GIF sequence exactly.
+- GitHub publishing has not been performed by the assistant. The user may upload the file themselves.
+
+## Sources / 來源
+Original animation retrieved from https://juliechang0520.github.io/RubiksCube/ on 2026-09-18.
+Method reference pages:
 https://maru.tw/2x2-beginner-tutorial-1st-layer/
 https://maru.tw/2x2-beginner-tutorial-2nd-layer/
-Reference text was read in v0.2. GIF retrieval returned 403. Current cards and texts are original; algorithms and transitions independently checked in the state engine, not a claim that original GIFs were visually verified.
+Reference text was read; earlier GIF retrieval returned 403. No claim of visual GIF verification.
 
-## Delivery rule / 使用者指定
+## Delivery rule / 使用者要求
 完成一小段 → 保存版本與進度 → 先交付檔案 → 再繼續。
-Preserve older versions. Deliver each bounded milestone before expanding. Never restart from scratch. Do not claim old reports of 21 complete cards/tests were recovered.
+Save and deliver each bounded milestone before expanding. Preserve old versions. Do not restart from scratch or present progress messages as proof of saved code.
 
-## Next bounded milestone / 下一步
-Next: add second-layer orientation cases with a complete case map, explicit holding direction, and transitions. Save/deliver the next milestone before expanding further. Browser restrictions remain unresolved.
-
-## v0.4 completed / 本版完成
-- Separate First Face and First Layer groups, preserving all earlier cases.
-- One matching pair: hold it on LEFT, white up; use the repeated corner-swap algorithm.
-- No matching pairs: swap, U U to align, pause, repeat swap.
-- Four matching pairs: completed-layer check.
-- x2 whole-cube flip demonstration, including reverse-step control.
-- Full-color diagrams plus four labeled side-pair strips.
-- The swap used here is independently verified T-permutation: R U R' U' R' F R R U' R' U' R U R' F'. It has NOT been visually matched to the original MARU GIF sequence; do not claim exact formula equivalence to that source. Layer-by-layer structure is retained.
-
-## v0.4 verification
-- All 24 top-corner permutations: 4 zero-pair states, 16 one-pair states, 4 already matched states; appropriate setup and algorithms complete the layer.
-- Whole-cube flip puts all white stickers below; its inverse restores the state.
-- 149 matching first-face states and transition checks retained.
-- Eleven UI examples, forward/reverse, completion guards and four playback checkpoint pause/resume paths passed mock-DOM tests.
-- Real browser rendering and actual phone testing remain unverified; prior URL-policy restriction is unchanged. No further blocked browser attempts made.
+## Next / 下一步
+Obtain a permitted testable preview (for example the user's published GitHub Pages version once its actual URL is supplied), inspect desktop and mobile behavior, fix observed issues, save/deliver. Without a preview, continue only bounded independently verifiable improvements and state the QA limitation.

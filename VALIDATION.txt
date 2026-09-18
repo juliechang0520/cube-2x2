@@ -1,5 +1,19 @@
-PASS: all 24 top-corner permutations (zero:4, one:16, four:4), whole-cube flip and inverse.
-PASS: 149 matching first-face legal states, transitions and move identities.
-PASS: eleven inverse-sequence examples.
-PASS: simulated DOM eleven cases, forward/reverse, guards, four checkpoint pauses/resumes.
-NOT RUN: real browser rendering / phone testing (documented preview restriction).
+v0.10 checks:
+PASS verify-directions.cjs: all eight R/U/D/F quarter-turn directions agree with sticker permutation; preview is non-mutating; whole flip separate; custom colors hidden; finished/explore guides clear.
+PASS verify-animation.cjs and verify-resume.cjs re-run.
+Static SVG arrow geometry inspected; scratch renderer lacks Chinese glyphs. Real browser/mobile typography and touch QA NOT completed.
+
+Retained prior results:
+v0.9 verification (mock DOM/storage; no real browser or phone QA):
+PASS: all 28 presets and a custom plan restore exact sticker/cubie state, step, speed and tracking after reload. Resume remains paused; startup preserves saved progress.
+PASS: custom plan survives input draft edits; previous/restart after resume, corrupt/out-of-range records and blocked storage handled.
+PASS: verify-animation.cjs re-run; all 28 presets agree after every forward/reverse move.
+
+Retained v0.8 solver results (solver unchanged in v0.9):
+PASS: all 5,670 valid white-position arrangements solve; every checkpoint increases top whites and preserves previously occupied top slots. Inverse presets reproduce every input. Maximum 15 quarter turns. Invalid input rejected; mock UI entry verified. No real browser/touch test.
+PASS: generated-plan autoplay pauses at every checkpoint; previous restores original white input. Mock DOM only.
+PASS: reused CSS 3D engine and independent sticker engine agree after every forward and reverse move across all 28 presets. Intro reaches 1→2→3 white stickers with stable target identity. Mock DOM only; rendering/touch not visually tested.
+PASS: all 648 last-layer states (27 orientations × 24 permutations) covered; FULL CUBE solved through yellow orientation, corner matching and final alignment; bottom preserved. Alignment descriptions checked. Cases: [
+  96, 96, 48, 96,
+  96, 96, 96, 24
+]

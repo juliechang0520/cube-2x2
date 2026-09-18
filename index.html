@@ -1,15 +1,228 @@
 <!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>小小方塊 · 2×2</title><meta name="description" content="一起認識與轉動 2×2 魔術方塊"><style>
 :root{font-family:system-ui,-apple-system,'Noto Sans TC',sans-serif;color:#202c43;background:#f4f6fa;font-size:16px}*{box-sizing:border-box}body{margin:0}button,select{font:inherit}button{cursor:pointer;border:1px solid #d4dce8;background:white;color:#253c62;border-radius:12px;padding:13px 17px;min-height:48px}button:hover{background:#edf2ff}button:focus-visible,summary:focus-visible,canvas:focus-visible{outline:3px solid #ed8e40;outline-offset:3px}button:disabled{opacity:.4;cursor:default}header{max-width:1200px;margin:auto;padding:25px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dde3ec}.brand{font-weight:800;font-size:21px}.small{font-size:14px;color:#65748a}.tag{font-size:14px;border:1px solid #ccd6e6;padding:7px 12px;border-radius:24px}main{max-width:1200px;margin:auto;padding:28px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px}.viewer{background:white;border:1px solid #dce3ed;border-radius:24px;padding:22px;min-width:0}.eyebrow{font-size:14px;color:#526785;font-weight:700;letter-spacing:.06em}h1{font-size:clamp(27px,4vw,38px);line-height:1.3;margin:12px 0}p{line-height:1.7;margin:12px 0}canvas{width:100%;height:380px;display:block;touch-action:none;cursor:grab}canvas:active{cursor:grabbing}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.center{justify-content:center}.tabs{display:flex;gap:8px;margin-bottom:22px}.tabs button{flex:1;padding:12px 8px}.active,.primary{background:#294d91!important;color:white!important;border-color:#294d91}.panel{padding:6px 0}.instruction{padding:20px;background:#eaf0fb;border-radius:18px;margin:20px 0;min-height:108px}.instruction strong{display:block;font-size:21px;margin-bottom:7px}.progress{display:flex;gap:6px;margin:22px 0}.progress span{height:6px;flex:1;background:#dce3ee;border-radius:8px}.progress .done{background:#315a9d}.moves{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.move{font-size:20px;font-weight:700;padding:9px 15px;background:#eaf0fb;border-radius:9px}.move.current{background:#294d91;color:#fff}details{border-top:1px solid #d7dfeb;margin-top:24px;padding-top:18px}summary{cursor:pointer;font-weight:650;min-height:40px}.colors{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.color{display:flex;align-items:center;gap:7px;padding:9px 12px;background:white;border-radius:8px;font-size:15px}.swatch{height:19px;width:19px;border:1px solid #9cabc0;border-radius:5px}.foot{max-width:1200px;margin:0 auto;padding:0 28px 25px;font-size:14px;color:#63738a;line-height:1.6}.status{font-size:14px;color:#536581;text-align:center;margin-top:12px}a{color:#294d91}.hidden{display:none!important}@media(max-width:760px){header{padding:18px}.tag{font-size:12px}main{padding:16px;grid-template-columns:1fr;gap:19px}.viewer{padding:16px}canvas{height:285px}.tabs{margin-bottom:15px}.panel{padding:0 4px}h1{font-size:29px}.foot{padding:10px 20px 24px}.instruction{margin:14px 0}}
 .casegrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.casecard{text-align:left;padding:12px;min-width:0}.casecard svg{display:block;width:100%;height:145px}.casecard b{font-size:16px}.casecard span{display:block;font-size:14px;margin-top:6px}.casecard.selected{border:2px solid #294d91;background:#edf2ff}.casegrid .casecard:first-child{grid-column:1/-1}.casegrid .casecard:first-child svg{display:none}.viewer{align-self:start;position:sticky;top:18px}.orientation{font-size:14px;text-align:center;color:#344f79}@media(max-width:760px){.viewer{position:static}canvas{height:260px}.casecard svg{height:120px}.tabs{position:static}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
-.viewcontrols{border-top:1px solid #dce3ed;margin-top:18px;padding-top:6px;text-align:center}.viewcontrols p{font-size:16px}.stagehint{margin:12px 0;padding:14px;border-left:4px solid #315a9d;background:#f0f4fb;font-size:15px;line-height:1.6}.casecard .under{border-top:1px dashed #b5c3d7;margin-top:8px}.casecard .under svg{height:100px}.casecard .under span{font-size:13px;text-align:center}.casegrid{align-items:start}.pairstrips{font-size:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.pairstrips span{font-size:12px}.pairstrips i{display:inline-block;width:19px;height:19px;border:1px solid #536581;border-radius:3px;vertical-align:middle}.casegrid .casecard:first-child svg{display:block}.casegrid .casecard:first-child{grid-column:auto}.progress{gap:3px}@media(max-width:380px){.casegrid{gap:7px}.casecard{padding:9px}} </style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='14' height='14' rx='3' fill='%23294d91'/%3E%3Crect x='18' width='14' height='14' rx='3' fill='%23e35f59'/%3E%3Crect y='18' width='14' height='14' rx='3' fill='%23f6cf4a'/%3E%3Crect x='18' y='18' width='14' height='14' rx='3' fill='%23469f78'/%3E%3C/svg%3E"></head><body>
-<header><div class="brand">小小方塊 <span class="small">Little Cube</span></div><span class="tag">2 × 2 · 練習版 v0.4</span></header>
-<main><section class="viewer" aria-label="互動方塊"><div class="eyebrow">轉一轉，看看每一面 · EXPLORE</div><div class="orientation"><span id="holding">完成狀態：白色朝上、綠色朝前。<br>Solved view: white up, green front.</span></div><canvas id="cube" tabindex="0" aria-label="2×2 立體方塊；拖曳或用方向鍵改變觀看角度"></canvas><div class="row center"><button id="view">回到示範角度<br><span class="small">Reset view</span></button><button id="bottom">看看底面<br><span class="small">See bottom</span></button></div><div class="viewcontrols hidden" id="viewcontrols"><p id="compactStatus" aria-live="polite"></p><div class="row center"><button id="compactPrev">← 上一步<br>Previous</button><button class="primary" id="compactNext">下一步 →<br>Next</button></div></div><p class="status">拖曳觀看，也可以用鍵盤方向鍵。<br>Drag to look around, or use the arrow keys.</p></section>
+.viewcontrols{border-top:1px solid #dce3ed;margin-top:18px;padding-top:6px;text-align:center}.viewcontrols p{font-size:16px}.stagehint{margin:12px 0;padding:14px;border-left:4px solid #315a9d;background:#f0f4fb;font-size:15px;line-height:1.6}.casecard .under{border-top:1px dashed #b5c3d7;margin-top:8px}.casecard .under svg{height:100px}.casecard .under span{font-size:13px;text-align:center}.casegrid{align-items:start}.pairstrips{font-size:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}.pairstrips span{font-size:12px}.pairstrips i{display:inline-block;width:19px;height:19px;border:1px solid #536581;border-radius:3px;vertical-align:middle}.casegrid .casecard:first-child svg{display:block}.casegrid .casecard:first-child{grid-column:auto}.progress{gap:3px}@media(max-width:380px){.casegrid{gap:7px}.casecard{padding:9px}} #liveCase svg{width:130px;height:145px}#liveCase{margin:12px 0}.casegrid svg{max-height:160px}.fullsides{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}.fullsides span{display:block;font-size:12px;margin:4px 0}.facecells{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:72px}.facecells i{aspect-ratio:1;border:1px solid #536581;border-radius:3px}.casecard .fullsides{grid-template-columns:repeat(2,1fr)}#nextLesson{margin-top:18px} 
+canvas[hidden]{display:none}.orig-stage{width:min(100%,320px);height:320px;margin:auto;perspective:1300px;position:relative;touch-action:none;user-select:none}.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;cursor:grab}.turn-group{position:absolute;inset:0;transform-style:preserve-3d}.cubie{position:absolute;top:50%;left:50%;transform-style:preserve-3d}.face{position:absolute;border-radius:9px;background:#202735;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25)}.sticker-white{background:#f7f9fd}.sticker-yellow{background:#f1cf45}.sticker-green{background:#44a980}.sticker-blue{background:#4381cb}.sticker-red{background:#e75b58}.sticker-orange{background:#f39342}.cubie.tracked .face{outline:3px solid #162742;outline-offset:-6px}.cubie.will-turn .face{box-shadow:inset 0 0 0 3px rgba(255,255,255,.75)}.turncue{text-align:center;min-height:48px;font-size:15px}.orig-stage:focus-visible{outline:3px solid #ed8e40}#tracking{display:block;margin:0 auto 14px;font-size:14px}@media(max-width:760px){.orig-stage{height:280px;max-width:280px}}
+
+.white-net{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;max-width:480px;margin:16px 0}.white-face{min-width:0;text-align:center;font-size:12px}.white-face .tiles{display:grid;grid-template-columns:1fr 1fr;gap:3px}.white-face button{padding:0;min-height:44px;background:#aeb9ca;color:#24344b;border:2px solid #64748b;border-radius:6px}.white-face button[aria-pressed="true"]{background:white;border-color:#152338}.white-only .face[class*="sticker-"]:not(.sticker-white){background:#aeb9ca!important}
+.resume-banner{max-width:1100px;margin:16px auto;padding:16px;background:#f2eee5;border-radius:12px}.speed-control{text-align:center;margin:12px 0}.speed-control label{display:block;margin-bottom:6px}.speed-control select{font:inherit;padding:10px;border:1px solid #64748b;border-radius:8px;background:white;min-height:44px}.speed-control p{min-height:2em}
+.turn-diagram{margin:0 auto 16px;max-width:360px;background:#f4f2ed;border-radius:12px;padding:12px;color:#263448}.turn-diagram:empty{display:none}.turn-diagram h2{font-size:16px;margin:0 0 6px}.turn-diagram p{font-size:13px;margin:6px 0;line-height:1.5}.turn-faces{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:center}.turn-faces figure{margin:0;min-width:0}.turn-faces svg{font-family:system-ui,"Microsoft JhengHei",sans-serif;display:block;width:100%;height:auto}.turn-faces figcaption{font-size:12px}
+</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='14' height='14' rx='3' fill='%23294d91'/%3E%3Crect x='18' width='14' height='14' rx='3' fill='%23e35f59'/%3E%3Crect y='18' width='14' height='14' rx='3' fill='%23f6cf4a'/%3E%3Crect x='18' y='18' width='14' height='14' rx='3' fill='%23469f78'/%3E%3C/svg%3E"></head><body>
+<header><div class="brand">小小方塊 <span class="small">Little Cube</span></div><span class="tag">2 × 2 · 練習版 v0.10</span></header>
+<div id="resumeBanner" class="resume-banner hidden"><p id="resumeDescription"></p><p>請先確認實體魔方仍停在同一步，再繼續。<br>Check that your real cube is still at the saved step before continuing.</p><button id="resumePractice">接續上次練習 · Resume</button><button id="freshPractice">從目前畫面開始 · Start fresh</button></div><main><section class="viewer" aria-label="互動方塊"><div class="eyebrow">轉一轉，看看每一面 · EXPLORE</div><div class="orientation"><span id="holding">完成狀態：白色朝上、綠色朝前。<br>Solved view: white up, green front.</span></div><div class="orig-stage" id="cubeStage" tabindex="0" role="img" aria-label="可拖曳旋轉的立體魔方"><div id="originalCube" class="cube"></div></div><p id="turnCue" class="turncue" aria-live="polite"></p><div id="turnDiagram" class="turn-diagram"></div><button id="tracking" aria-pressed="true">角塊追蹤：開 · Tracking on</button><div class="speed-control"><label for="speed">轉動速度 · Turn speed</label><select id="speed"><option value="1600">更慢 · Extra slow</option><option value="900" selected>慢速 · Slow</option><option value="450">一般 · Normal</option></select><p id="saveStatus" class="small" aria-live="polite"></p></div><canvas hidden id="cube" tabindex="0" aria-label="2×2 立體方塊；拖曳或用方向鍵改變觀看角度"></canvas><div class="row center"><button id="view">回到示範角度<br><span class="small">Reset view</span></button><button id="bottom">看看底面<br><span class="small">See bottom</span></button></div><div class="viewcontrols hidden" id="viewcontrols"><p id="compactStatus" aria-live="polite"></p><div class="row center"><button id="compactPrev">← 上一步<br>Previous</button><button class="primary" id="compactNext">下一步 →<br>Next</button></div></div><p class="status">拖曳觀看，也可以用鍵盤方向鍵。<br>Drag to look around, or use the arrow keys.</p></section>
 <section class="panel"><nav class="tabs" aria-label="練習選擇"><button id="exploreTab" class="active" aria-pressed="true">① 認識方塊<br>Explore</button><button id="practiceTab" aria-pressed="false">② 練習與對照<br>Practice & cases</button></nav>
 <div id="explore"><div class="eyebrow">先從觀察開始 · LOOK CLOSELY</div><h1>小方塊，大發現。</h1><p>這顆方塊有 <b>6 個面、6 種顏色</b>，由 <b>8 個小角塊</b>組成。每個小角塊都有 3 種顏色。</p><p class="small">Six faces, six colors, eight corner pieces. Each corner carries three colors.</p><div class="colors" id="colors"></div><div class="instruction"><strong>找找看，底下是什麼顏色？</strong><span>把整顆轉過來看看。改變觀看角度，不會打亂方塊。<br><span class="small">Look underneath. Changing the view does not scramble the cube.</span></span></div><button class="primary" id="start">來試試轉動 → &nbsp; Try a turn</button></div>
-<div id="practice" class="hidden"><div class="row"><button id="faceGroup" class="active">第一面 · Face</button><button id="layerGroup">第一層 · Layer</button></div><div class="stagehint" id="stageHint">已拼出上面三格白色？先把缺口拿到右前上。如果最後一塊在底層其他位置，只轉底層，把它移到右前下；然後選下方對照圖。<br>With three whites on top, place the gap at top-front-right. If the last piece is elsewhere below, turn only the bottom layer to bring it to bottom-front-right.</div><div class="casegrid" id="cases" aria-label="選擇練習情況"></div><div class="eyebrow">選好情況，跟著轉 · FOLLOW THE MOVES</div><h1>一次，跟著轉一下。</h1><p><span id="caseIntro">這是固定練習，差 4 步就完成。</span></p><p class="small"><span id="caseEnglish">Watch one move at a time.</span></p><div class="progress" id="progress"></div><div class="instruction" aria-live="polite"><strong id="stepTitle"></strong><span id="stepText"></span></div><div class="row"><button id="prev">← 上一步<br>Previous</button><button class="primary" id="next">下一步 →<br>Next</button><button id="play">慢速播放<br>Play slowly</button><button id="reset">重新開始<br>Restart</button></div><details><summary>看看公式 · Show the moves</summary><div class="moves" id="moves"></div><p>R：從右面看順時針轉 90°。U：從上面看順時針轉 90°。D：從底面看順時針。F：從正面看順時針。加上 ′ 表示逆時針。x2 是整顆上下翻半圈。</p><p class="small">R turns the right face clockwise; U turns the upper face clockwise, viewed directly at that face. D is the bottom face; F is the front face. A prime (′) reverses the turn. x2 flips the entire cube halfway.</p></details><p class="small" id="setupNote"></p><p class="small" id="matchNote">圖卡比較的是白色貼紙的位置，其他顏色可以不同。開始前，把上面缺白色的角放在右前上。做完後檢查自己的方塊；畫面無法判斷實體結果。<br>Match white-sticker positions, not every side color. Put the missing top corner at front-right. Check your real cube yourself.</p></div>
-</section></main><footer class="foot">已包含第一面最後一塊的五種標準情況與完成檢查；已加入第一層側邊配對與整顆翻面；第二層仍待加入。<br>Includes all five standardized last-corner cases for the first face and a completion check. Layer matching and a whole-cube flip are included; last-layer lessons are still pending.</footer>
+<div id="practice" class="hidden"><details id="whiteInput"><summary>用我的魔方開始 · Start with my cube</summary><p>先固定「前面」與「上面」，在展開圖點選 4 格白色。灰色表示未輸入的其他顏色。翻看各面後，回到原本拿法，操作時保持方向。<br>Choose a front and top. Mark all four white stickers. Gray means unspecified colors. Return to the original holding position before following moves.</p><p class="small">左右與後面：上緣都接上面。上面：下緣接前面。底面：上緣接前面。<br>Side faces: top edge meets Up. Up: bottom edge meets Front. Down: top edge meets Front.</p><div id="whiteNet" class="white-net"></div><p id="whiteCount" aria-live="polite"></p><div class="row"><button id="whiteClear">清除 · Clear</button><button id="whiteExample">載入示例 · Example</button><button id="whitePlan" class="primary">產生我的步驟 · Plan moves</button></div><p id="whiteError" role="status"></p></details><div class="row"><button id="beginGroup">從零開始 · Start</button><button id="faceGroup" class="active">第一面 · Face</button><button id="layerGroup">第一層 · Layer</button><button id="yellowGroup">黃色頂面 · Yellow</button><button id="finishGroup">最後配對 · Finish</button></div><div class="stagehint" id="stageHint">已拼出上面三格白色？先把缺口拿到右前上。如果最後一塊在底層其他位置，只轉底層，把它移到右前下；然後選下方對照圖。<br>With three whites on top, place the gap at top-front-right. If the last piece is elsewhere below, turn only the bottom layer to bring it to bottom-front-right.</div><div class="casegrid" id="cases" aria-label="選擇練習情況"></div><div class="eyebrow">選好情況，跟著轉 · FOLLOW THE MOVES</div><h1>一次，跟著轉一下。</h1><p><span id="caseIntro">這是固定練習，差 4 步就完成。</span></p><p class="small"><span id="caseEnglish">Watch one move at a time.</span></p><div id="liveCase"></div><div class="progress" id="progress"></div><div class="instruction" aria-live="polite"><strong id="stepTitle"></strong><span id="stepText"></span></div><div class="row"><button id="prev">← 上一步<br>Previous</button><button class="primary" id="next">下一步 →<br>Next</button><button id="play">慢速播放<br>Play slowly</button><button id="reset">重新開始<br>Restart</button></div><button id="nextLesson" class="hidden">下一階段示範 →<br>Next stage demo</button><details><summary>看看公式 · Show the moves</summary><div class="moves" id="moves"></div><p>R：從右面看順時針轉 90°。U：從上面看順時針轉 90°。D：從底面看順時針。F：從正面看順時針。加上 ′ 表示逆時針。x2 是整顆上下翻半圈。</p><p class="small">R turns the right face clockwise; U turns the upper face clockwise, viewed directly at that face. D is the bottom face; F is the front face. A prime (′) reverses the turn. x2 flips the entire cube halfway.</p></details><p class="small" id="setupNote"></p><p class="small" id="matchNote">圖卡比較的是白色貼紙的位置，其他顏色可以不同。開始前，把上面缺白色的角放在右前上。做完後檢查自己的方塊；畫面無法判斷實體結果。<br>Match white-sticker positions, not every side color. Put the missing top corner at front-right. Check your real cube yourself.</p></div>
+</section></main><footer class="foot">已包含第一面最後一塊的五種標準情況與完成檢查；已加入第一層側邊配對與整顆翻面；已加入黃色頂面；已加入最後角塊配對與上下層對齊。<br>Includes all five standardized last-corner cases for the first face and a completion check. Layer matching and a whole-cube flip are included; yellow orientation is included; final corner positioning and layer alignment are included.</footer>
 <script>
 'use strict';
+let saveReady=false,playbackMs=900,pendingResume=null;
+const practiceStorageKey='little-cube-practice-v1';
+const COLORS = {
+  U:'sticker-white', D:'sticker-yellow',
+  F:'sticker-green', B:'sticker-blue',
+  R:'sticker-red',   L:'sticker-orange'
+};
+// face-child local transforms (css) — verified so solved shows white-up/green-front/red-right
+const FACE_DEFS = [
+  {key:'R', axis:'x', sign:1,  css:'rotateY(90deg)'},
+  {key:'L', axis:'x', sign:-1, css:'rotateY(-90deg)'},
+  {key:'U', axis:'y', sign:1,  css:'rotateX(90deg)'},
+  {key:'D', axis:'y', sign:-1, css:'rotateX(-90deg)'},
+  {key:'F', axis:'z', sign:1,  css:'rotateY(0deg)'},
+  {key:'B', axis:'z', sign:-1, css:'rotateY(180deg)'}
+];
+const MOVES = {
+  R:{axis:'x',layer:1,dir:-1}, L:{axis:'x',layer:-1,dir:1},
+  U:{axis:'y',layer:1,dir:-1}, D:{axis:'y',layer:-1,dir:1},
+  F:{axis:'z',layer:1,dir:-1}, B:{axis:'z',layer:-1,dir:1}
+};
+// whole-cube rotations: x follows R, y follows U, z follows F
+const WHOLE = { x:{axis:'x',dir:-1}, y:{axis:'y',dir:-1}, z:{axis:'z',dir:-1} };
+// middle-slice turns (layer 0): M follows L, E follows D, S follows F
+const SLICES = { M:{axis:'x',layer:0,dir:1}, E:{axis:'y',layer:0,dir:1}, S:{axis:'z',layer:0,dir:-1} };
+function parseMove(token){
+  const face=token[0];
+  let base, whole=false;
+  if(WHOLE[face]){ base=WHOLE[face]; whole=true; }
+  else if(SLICES[face]){ base=SLICES[face]; }
+  else base=MOVES[face];
+  let dir=base.dir, times=token.includes('2')?2:1;
+  if(token.includes("'")) dir=-dir;
+  return {whole, axis:base.axis, layer:whole?null:base.layer, dir, times, face};
+}
+function isAffected(m,pos){
+  if(m.whole) return true;
+  if(m.axis==='x') return pos[0]===m.layer;
+  if(m.axis==='y') return pos[1]===m.layer;
+  return pos[2]===m.layer;
+}
+function rotVec(axis,dir,v){
+  const [x,y,z]=v;
+  if(axis==='x') return dir>0?[x,-z,y]:[x,z,-y];
+  if(axis==='y') return dir>0?[z,y,-x]:[-z,y,x];
+  return dir>0?[-y,x,z]:[y,-x,z];
+}
+// convert math 3x3 (columns=images of local x,y,z) to css matrix3d with y-flip F=diag(1,-1,1)
+function toCss(cols){
+  const f=[1,-1,1];
+  const c=[];
+  for(let j=0;j<3;j++){
+    const col=cols[j];
+    c.push([ f[j]*col[0], f[j]*(-col[1]), f[j]*col[2] ]);
+  }
+  return `matrix3d(${c[0][0]},${c[0][1]},${c[0][2]},0,`+
+         `${c[1][0]},${c[1][1]},${c[1][2]},0,`+
+         `${c[2][0]},${c[2][1]},${c[2][2]},0, 0,0,0,1)`;
+}
+function rotMatrix(axis,dir){
+  return [ rotVec(axis,dir,[1,0,0]), rotVec(axis,dir,[0,1,0]), rotVec(axis,dir,[0,0,1]) ];
+}
+
+class Cube{
+  constructor(cubeEl, opts){
+    opts=opts||{};
+    this.el=cubeEl;
+    this.stage=cubeEl.parentElement;
+    this.n = opts.n||3;                      // 3x3 or 2x2
+    this.C = this.stage.clientWidth/(this.n===2?3.15:4.15);
+    this.sc = this.n===2? this.C/2 : this.C; // position scale
+    this._flip = opts.flip||null;            // permanent whole-cube reorientation (e.g. ['z2'] = yellow up)
+    this._static = !!opts.static;            // static 圖例: no drag
+    this.viewX=-28; this.viewY=-34;
+    this.busy=false;
+    this.turnMs=320;                         // per-quarter-turn animation time (ms)
+    this.queue=[];
+    this.onSolved=null;
+    this._build();
+    this._applyView();
+    if(!this._static) this._enableDrag();
+  }
+  _build(){
+    this.el.innerHTML='';
+    this.cubies=[];
+    const C=this.C;
+    const coords = this.n===2? [-1,1] : [-1,0,1];
+    for(const x of coords)for(const y of coords)for(const z of coords){
+      if(x===0&&y===0&&z===0) continue;
+      const d=document.createElement('div');
+      d.className='cubie';
+      const size=C*0.94;
+      d.style.width=size+'px'; d.style.height=size+'px';
+      d.style.marginLeft=(-size/2)+'px'; d.style.marginTop=(-size/2)+'px';
+      const faces={};
+      FACE_DEFS.forEach(fd=>{
+        const face=document.createElement('div');
+        const onLayer = (fd.axis==='x'&&x===fd.sign)||(fd.axis==='y'&&y===fd.sign)||(fd.axis==='z'&&z===fd.sign);
+        face.className='face'+(onLayer?(' '+COLORS[fd.key]):'');
+        face.style.width=size+'px'; face.style.height=size+'px';
+        face.style.transform=`${fd.css} translateZ(${size/2}px)`;
+        d.appendChild(face);
+        faces[fd.key]=face;
+      });
+      const cubie={home:[x,y,z],pos:[x,y,z], orient:[[1,0,0],[0,1,0],[0,0,1]], el:d};
+      this._render(cubie);
+      this.el.appendChild(d);
+      this.cubies.push(cubie);
+    }
+    if(this._flip) this.applyInstant(this._flip);   // permanent reorientation (yellow up, etc.)
+  }
+  _render(cubie){
+    const s=this.sc, [x,y,z]=cubie.pos;
+    cubie.el.style.transform=
+      `translate3d(${x*s}px, ${-y*s}px, ${z*s}px) ${toCss(cubie.orient)}`;
+  }
+  _applyView(){ this.el.style.transform=`rotateX(${this.viewX}deg) rotateY(${this.viewY}deg)`; }
+
+  _enableDrag(){
+    let down=false,sx,sy,vx,vy;
+    const start=(e)=>{down=true;this.el.classList.add('dragging');
+      const p=e.touches?e.touches[0]:e; sx=p.clientX; sy=p.clientY; vx=this.viewY; vy=this.viewX;};
+    const move=(e)=>{if(!down)return; const p=e.touches?e.touches[0]:e;
+      this.viewY=vx+(p.clientX-sx)*0.5; this.viewX=vy-(p.clientY-sy)*0.5;
+      this.viewX=Math.max(-89,Math.min(89,this.viewX)); this._applyView();
+      if(e.cancelable)e.preventDefault();};
+    const end=()=>{down=false;this.el.classList.remove('dragging');};
+    this.stage.addEventListener('mousedown',start); window.addEventListener('mousemove',move); window.addEventListener('mouseup',end);
+    this.stage.addEventListener('touchstart',start,{passive:true}); this.stage.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',end);
+  }
+
+  // ---- logical + animated move ----
+  move(token){ return new Promise(res=>{ this.queue.push({token,res}); this._drain(); }); }
+  async sequence(tokens){ for(const t of tokens){ await this.move(t); } }
+  _drain(){
+    if(this.busy) return;
+    const job=this.queue.shift(); if(!job) return;
+    this.busy=true; this._animate(job.token, ()=>{ this.busy=false; job.res(); this._drain(); });
+  }
+  _animate(token, done){
+    const m=parseMove(token);
+    const runOnce=(cb)=>{
+      const group=document.createElement('div'); group.className='turn-group';
+      this.el.appendChild(group);
+      const affected=this.cubies.filter(c=>isAffected(m,c.pos));
+      affected.forEach(c=>group.appendChild(c.el));
+      const endCss=toCss(rotMatrix(m.axis,m.dir));
+      const dur=this.turnMs;
+      group.style.transform='matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)';
+      group.getBoundingClientRect();
+      group.style.transition='transform '+(dur/1000)+'s cubic-bezier(.3,.8,.35,1)';
+      group.style.transform=endCss;
+      let ended=false;
+      const finish=()=>{if(ended)return;ended=true;
+        const R=rotMatrix(m.axis,m.dir);
+        affected.forEach(c=>{
+          c.pos=rotVec(m.axis,m.dir,c.pos);
+          c.orient=c.orient.map(col=>rotVec(m.axis,m.dir,col));
+          this.el.appendChild(c.el);
+          this._render(c);
+        });
+        group.remove();
+        cb();
+      };
+      group.addEventListener('transitionend',finish,{once:true});
+      setTimeout(()=>{ if(group.parentElement) finish(); },dur+220); // safety
+    };
+    let i=0;
+    const step=()=>{ if(i++>=m.times){ done(); this._checkSolved(); return;} runOnce(step); };
+    step();
+  }
+
+  reset(){ this.queue=[]; this.busy=false; this._build(); }
+  async scramble(){
+    const faces=['R','L','U','D','F','B']; const mods=['',"'",'2'];
+    const seq=[]; let last='';
+    for(let i=0;i<18;i++){ let f; do{f=faces[Math.floor(Math.random()*6)];}while(f===last); last=f;
+      seq.push(f+mods[Math.floor(Math.random()*3)]); }
+    await this.sequence(seq);
+  }
+  isSolved(){
+    // solved iff every cubie shares the same orientation (allows a whole-cube flip)
+    if(!this.cubies.length) return true;
+    const ref=this.cubies[0].orient;
+    const eq=(a,b)=>a[0][0]===b[0][0]&&a[0][1]===b[0][1]&&a[0][2]===b[0][2]&&
+                    a[1][0]===b[1][0]&&a[1][1]===b[1][1]&&a[1][2]===b[1][2]&&
+                    a[2][0]===b[2][0]&&a[2][1]===b[2][1]&&a[2][2]===b[2][2];
+    return this.cubies.every(c=>eq(c.orient,ref));
+  }
+  _checkSolved(){ if(this.onSolved && !this.busy && this.queue.length===0 && this.isSolved()) this.onSolved(); }
+}
+
+
+Cube.prototype.applyInstant=function(tokens){
+  tokens.forEach(tok=>{
+    const m=parseMove(tok);
+    for(let n=0;n<m.times;n++){
+      this.cubies.forEach(c=>{
+        if(isAffected(m,c.pos)){ c.pos=rotVec(m.axis,m.dir,c.pos); c.orient=c.orient.map(col=>rotVec(m.axis,m.dir,col)); }
+      });
+    }
+  });
+  this.cubies.forEach(c=>{ c.el.style.transition='none'; this._render(c); });
+  void this.el.offsetWidth;
+};
+
+let originalCube=null;
 const canvas=document.getElementById('cube'),ctx=canvas.getContext('2d');
 const $=id=>document.getElementById(id);
 const palette=[['白 White','#f7f9fd'],['黃 Yellow','#f1cf45'],['紅 Red','#e75b58'],['橘 Orange','#f39342'],['綠 Green','#44a980'],['藍 Blue','#4381cb']];
@@ -33,61 +246,201 @@ const lessons=[
  {title:'四側都配好了',en:'All four side pairs match',group:'layer',moves:[],intro:'白色四格同色，旁邊四側各自也配成一對，這才是完整的一層。現在可以把它翻到底下。',english:'The white face and all four side pairs match. This is a completed layer, ready to move to the bottom.'},
  {title:'把完成的一層翻到底下',en:'Turn the solved layer down',group:'layer',moves:['x2'],preset:[],intro:'雙手握住整顆方塊，上下翻轉半圈。這是整顆換方向，不是只轉一層。',english:'Turn the ENTIRE cube upside down. This changes how you hold it; it does not twist an individual layer.'}
 
-
+,
+{"title": "1 格黃色朝上 · 1", "en": "1 yellow up · case 1", "group": "yellow", "moves": ["R", "U", "R'", "U", "R", "U", "U", "R'"], "preset": ["x2", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], "checkpoints": [], "blocks": [["R", "U", "R'", "U", "R", "U", "U", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "1 格黃色朝上 · 2", "en": "1 yellow up · case 2", "group": "yellow", "moves": ["R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], "preset": ["x2", "R", "U", "R'", "U", "R", "U", "U", "R'"], "checkpoints": [], "blocks": [["R", "U'", "U'", "R'", "U'", "R", "U'", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "0 格黃色朝上 · 3", "en": "0 yellow up · case 3", "group": "yellow", "moves": ["R", "U", "R'", "U", "R", "U", "U", "R'", "R", "U", "R'", "U", "R", "U", "U", "R'"], "preset": ["x2", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], "checkpoints": [8], "blocks": [["R", "U", "R'", "U", "R", "U", "U", "R'"], ["R", "U", "R'", "U", "R", "U", "U", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "0 格黃色朝上 · 4", "en": "0 yellow up · case 4", "group": "yellow", "moves": ["R", "U", "R'", "U", "R", "U", "U", "R'", "U", "R", "U", "R'", "U", "R", "U", "U", "R'"], "preset": ["x2", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U'", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], "checkpoints": [8], "blocks": [["R", "U", "R'", "U", "R", "U", "U", "R'"], ["U"], ["R", "U", "R'", "U", "R", "U", "U", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "2 格黃色朝上 · 5", "en": "2 yellow up · case 5", "group": "yellow", "moves": ["R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U", "R", "U", "R'", "U", "R", "U", "U", "R'"], "preset": ["x2", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U'", "R", "U", "R'", "U", "R", "U", "U", "R'"], "checkpoints": [8], "blocks": [["R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], ["U"], ["R", "U", "R'", "U", "R", "U", "U", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "2 格黃色朝上 · 6", "en": "2 yellow up · case 6", "group": "yellow", "moves": ["R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U'", "R", "U", "R'", "U", "R", "U", "U", "R'"], "preset": ["x2", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U", "R", "U", "R'", "U", "R", "U", "U", "R'"], "checkpoints": [8], "blocks": [["R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], ["U'"], ["R", "U", "R'", "U", "R", "U", "U", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "2 格黃色朝上 · 7", "en": "2 yellow up · case 7", "group": "yellow", "moves": ["R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U", "U", "R", "U", "R'", "U", "R", "U", "U", "R'"], "preset": ["x2", "R", "U'", "U'", "R'", "U'", "R", "U'", "R'", "U'", "U'", "R", "U", "R'", "U", "R", "U", "U", "R'"], "checkpoints": [8], "blocks": [["R", "U'", "U'", "R'", "U'", "R", "U'", "R'"], ["U", "U"], ["R", "U", "R'", "U", "R", "U", "U", "R'"]], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."},
+{"title": "黃色頂面完成", "en": "Yellow face complete", "group": "yellow", "moves": [], "preset": ["x2"], "checkpoints": [], "blocks": [], "intro": "白色完成層朝下。比對頂面與四側黃色的位置，拿成圖中的方向再開始。", "english": "Solved white layer down. Match yellow on both the top and side stickers before starting."} ,
+{title:'頂層只有一側配好',en:'One matching top pair',group:'finish',moves:swapMoves,preset:['x2',...swapMoves.slice().reverse().map(m=>m.includes("'")?m[0]:m+"'")],intro:'白色朝下，黃色朝上。把頂層唯一同色的一對拿到左邊，重複學過的交換動作。',english:'White down, yellow up. Hold the only matching TOP pair on the LEFT, then reuse the swap sequence.'},
+{title:'頂層沒有同色對',en:'No matching top pairs',group:'finish',moves:[...swapMoves,'U','U',...swapMoves],preset:['x2',...[...swapMoves,'U','U',...swapMoves].slice().reverse().map(m=>m.includes("'")?m[0]:m+"'")],transition:17,nextCase:19,intro:'黃色保持朝上。先交換一次，上層轉半圈對位，再交換一次。中途會暫停，讓你確認同色對在左側。',english:'Yellow up. Swap once, align with a half turn of the upper layer, then swap again. Pause to check the matching pair is on the left.'},
+{title:'上排顏色對應左側',en:'Top front color matches left',group:'finish',align:true,moves:['U'],preset:['x2',"U'"],intro:'四側上排都已配成一對。若正面上排的顏色與左側下排相同，從上面看順時針轉一次上層。',english:'All top pairs match. If the front top pair matches the LEFT lower pair, turn U once.'},
+{title:'上排顏色對應右側',en:'Top front color matches right',group:'finish',align:true,moves:["U'"],preset:['x2','U'],intro:'四側上排都已配成一對。若正面上排的顏色與右側下排相同，從上面看逆時針轉一次上層。',english:'All top pairs match. If the front top pair matches the RIGHT lower pair, turn U prime once.'},
+{title:'上排顏色對應後面',en:'Top front color matches back',group:'finish',align:true,moves:['U','U'],preset:['x2','U','U'],intro:'四側上排都已配成一對。若正面上排的顏色與後面下排相同，把上層轉半圈。',english:'All top pairs match. If the front top pair matches the BACK lower pair, turn the upper layer halfway.'},
+{title:'六個面全部完成',en:'All six faces solved',group:'finish',align:true,moves:[],preset:['x2'],intro:'轉動觀看六面，每一面四格都同色，就是完成！實體方塊也要自己檢查一次。',english:'Look at all six faces. Four matching stickers on every face means solved. Check your real cube too.'}
+,
+{"moves": [], "preset": ["F'", "R'", "F", "F", "R", "R'", "R", "R'", "R", "R'", "F", "F"], "title": "① 找到第一塊白色", "en": "Find the first white corner", "group": "beginner", "target": 12, "intro": "先找到有白色的小角塊，整顆換方向，讓白色朝上。這個練習已幫你拿好；白色旁邊的兩個顏色會跟它一起移動。", "english": "Find a white corner and hold its white sticker on top. This exercise is already oriented. Its three colors stay together."},
+{"title": "② 放進第二塊", "en": "Add the second corner", "group": "beginner", "moves": ["D", "D'", "R'", "D", "R"], "preset": ["F'", "R'", "F", "F", "R", "R'", "R", "R'", "R", "R'", "F", "F"], "target": 13, "checkpoints": [1], "intro": "跟著外框標記的角塊，看它從側邊進到上面。中途白色可能暫時移開；請完成這一小段再檢查。", "english": "Follow the outlined corner onto the top. White stickers may move away temporarily; finish this short sequence before checking."},
+{"title": "③ 放進第三塊", "en": "Add the third corner", "group": "beginner", "moves": ["U", "D'", "R'", "D", "R"], "preset": ["F'", "R'", "F", "F", "R", "R'", "R", "R'", "R", "R'", "F", "F", "D", "D'", "R'", "D", "R"], "target": 14, "checkpoints": [1], "intro": "跟著外框標記的角塊，看它從側邊進到上面。中途白色可能暫時移開；請完成這一小段再檢查。", "english": "Follow the outlined corner onto the top. White stickers may move away temporarily; finish this short sequence before checking."}
 ];
 const invert=m=>m==='x2'?'x2':m.includes("'")?m[0]:m+"'";
 let selected=0,sequence=lessons[0].moves,setup=sequence.slice().reverse().map(invert);
 let state=solved(),yaw=-.58,pitch=.48,animation=null,busy=false,playing=false,step=0,mode='explore';
 function cam(v){return rotate(rotate(v,1,yaw),0,pitch)}
-function draw(){let w=canvas.clientWidth,h=canvas.clientHeight,dpr=devicePixelRatio||1;if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);let scale=Math.min(w,h)*.24;const projected=[];for(let f of state){let verts=f.verts,n=f.n;if(animation&&(animation.whole||f.p[animation.axis]*animation.side>.1)){verts=verts.map(v=>rotate(v,animation.axis,animation.a));n=rotate(n,animation.axis,animation.a);}if(cam(n)[2]<.001)continue;let vv=verts.map(cam);projected.push({vv,color:f.color,z:vv.reduce((s,v)=>s+v[2],0)/4});}projected.sort((a,b)=>a.z-b.z);for(let f of projected){ctx.beginPath();f.vv.forEach(([x,y,z],i)=>{let k=5/(5-z),px=w/2+x*scale*k,py=h/2-y*scale*k;i?ctx.lineTo(px,py):ctx.moveTo(px,py)});ctx.closePath();ctx.fillStyle=palette[f.color][1];ctx.fill();ctx.lineWidth=6;ctx.lineJoin='round';ctx.strokeStyle='#263448';ctx.stroke();}}
+function oldCanvasDraw(){let w=canvas.clientWidth,h=canvas.clientHeight,dpr=devicePixelRatio||1;if(canvas.width!==Math.round(w*dpr)||canvas.height!==Math.round(h*dpr)){canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);}ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);let scale=Math.min(w,h)*.24;const projected=[];for(let f of state){let verts=f.verts,n=f.n;if(animation&&(animation.whole||f.p[animation.axis]*animation.side>.1)){verts=verts.map(v=>rotate(v,animation.axis,animation.a));n=rotate(n,animation.axis,animation.a);}if(cam(n)[2]<.001)continue;let vv=verts.map(cam);projected.push({vv,color:f.color,z:vv.reduce((s,v)=>s+v[2],0)/4});}projected.sort((a,b)=>a.z-b.z);for(let f of projected){ctx.beginPath();f.vv.forEach(([x,y,z],i)=>{let k=5/(5-z),px=w/2+x*scale*k,py=h/2-y*scale*k;i?ctx.lineTo(px,py):ctx.moveTo(px,py)});ctx.closePath();ctx.fillStyle=palette[f.color][1];ctx.fill();ctx.lineWidth=6;ctx.lineJoin='round';ctx.strokeStyle='#263448';ctx.stroke();}}
+let showTracking=true;
+function targetHome(){let l=lessons[selected],initial=startState(l),idx=l.target;if(idx===undefined){idx=initial.findIndex(f=>f.color===(['yellow','finish'].includes(l.group)?1:0)&&f.n[1]!==1);if(idx<0)idx=initial.findIndex(f=>f.p[1]>0);}return solved()[idx].p.map(Math.sign);}
+function draw(){if(!originalCube)return;$('originalCube').classList.toggle('white-only',mode==='practice'&&lessons[selected].group==='custom');originalCube.viewX=-pitch*180/Math.PI;originalCube.viewY=yaw*180/Math.PI;originalCube._applyView();let home=targetHome(),m=mode==='practice'&&step<sequence.length?parseMove(sequence[step]):null;for(let c of originalCube.cubies){c.el.classList.toggle('tracked',showTracking&&mode==='practice'&&c.home.every((v,i)=>v===home[i]));c.el.classList.toggle('will-turn',!!m&&isAffected(m,c.pos));}}
+function syncOriginal(){if(!originalCube)return;originalCube.reset();if(mode==='practice')originalCube.applyInstant([...setup,...sequence.slice(0,step)]);draw();}
 function update(){const length=sequence.length,finished=step>=length,lesson=lessons[selected];
 for(let id of ['next','prev','reset','compactNext','compactPrev'])$(id).disabled=busy||playing;
 for(let id of ['next','compactNext'])$(id).disabled=busy||playing||finished;
 for(let id of ['prev','compactPrev'])$(id).disabled=busy||playing||step===0;
 $('play').disabled=(busy&&!playing)||!length;
-for(let id of ['exploreTab','practiceTab','start','faceGroup','layerGroup'])$(id).disabled=busy;
+for(let id of ['exploreTab','practiceTab','start','faceGroup','layerGroup','yellowGroup','finishGroup','nextLesson','beginGroup','tracking','whitePlan','whiteClear','whiteExample','speed','resumePractice','freshPractice'])$(id).disabled=busy;
 document.querySelectorAll('.casecard').forEach(b=>b.disabled=busy);
-$('play').innerHTML=playing?'暫停播放<br>Pause':'慢速播放<br>Play slowly';
+$('play').innerHTML=playing?'暫停播放<br>Pause':'播放這一段<br>Play segment';
 $('progress').innerHTML=sequence.map((_,i)=>`<span class="${i<step?'done':''}"></span>`).join('');
 $('moves').innerHTML=sequence.map((m,i)=>`<span class="move ${i===step?'current':''}">${m.replace("'",'′')}</span>`).join('');
-$('stepTitle').textContent=finished?(selected===10?'完成的一層已在底下！':lesson.group?'第一層完成！':selected?'白色一面完成！':'練習完成！'):(step?'第 '+step+' / '+length+' 步完成':'準備好了嗎？');
+$('stepTitle').textContent=finished?(lesson.group==='beginner'?(selected===25?'先認識第一塊':selected===26?'第二塊放好了！':'第三塊放好了！'):lesson.group==='finish'?(lesson.align?'整顆完成！':'頂層角塊已配對！'):lesson.group==='yellow'?'黃色頂面完成！':selected===10?'完成的一層已在底下！':lesson.group?'第一層完成！':selected?'白色一面完成！':'練習完成！'):(step?'第 '+step+' / '+length+' 步完成':'準備好了嗎？');
 const names={R:['右面','right face'],U:['上面','upper face'],D:['底面','bottom face'],F:['前面','front face'],x:['整顆','whole cube']};
 if(!finished){let m=sequence[step],n=names[m[0]],rev=m.includes("'");let text='接下來：從'+n[0]+'正對著看，'+(rev?'逆':'順')+'時針轉 90°。 Next: '+n[1]+(rev?' counterclockwise.':' clockwise.');
 if(m==='x2')text='雙手拿著整顆，上下翻轉半圈。 Flip the whole cube upside down.';
 if(!lesson.group&&lesson.transition&&step===lesson.transition-1)text='先對位：只轉底層，將目標角移到右前下。 Align the bottom layer. '+text;
-if(lesson.group&&lesson.transition&&step>=15&&step<17)text='把上層轉半圈：這裡分成兩個 90° 動作。 Turn the top halfway, in two quarter turns. '+text;
+if(['layer','finish'].includes(lesson.group)&&lesson.transition&&step>=15&&step<17)text='把上層轉半圈：這裡分成兩個 90° 動作。 Turn the top halfway, in two quarter turns. '+text;
 if(lesson.transition===step)text='停下來對照：現在是「'+lessons[lesson.nextCase].title+'」。 Check the new case. '+text;
+if(['yellow','beginner','custom'].includes(lesson.group)&&(lesson.checkpoints||[]).includes(step))text='先停下來看看目標角塊的位置，再接下一段。 Pause and check the target corner before continuing. '+text;
 $('stepText').textContent=text;
-}else $('stepText').textContent=selected===10?'白色完成層在底下，接下來才處理上層。第二層教學下一版加入。 The solved white layer is below. Last-layer lessons are coming next.':lesson.group?'檢查白面與四側的同色對；確認後選「把完成的一層翻到底下」。 Check the face and all four side pairs, then choose the whole-cube flip.':selected?'先檢查四格白色，再看側邊是否配對。完成一面不一定等於完成一層。 Check the white face, then side pairs. A face is not always a layer.':'轉動觀看六個面，確認每一面都是同一色。 Look around: every face is one color.';
+}else $('stepText').textContent=lesson.group==='beginner'?'數數看，上面有幾格白色？接著選下一個入門練習。這是固定局面；實體顏色位置不同時，不要直接套用。 Count the white stickers on top. Continue the preset practice; do not apply it blindly to a different real cube.':lesson.group==='finish'?(lesson.align?'請拿實體方塊，檢查六個面是否各自同色。畫面完成不代表實體自動完成。 Check all six faces of your real cube.': '頂層角塊已配好；如果上下層還沒對齊，選下方對齊圖卡。 Top pairs match; choose an alignment card if the layers do not line up.') :lesson.group==='yellow'?'黃色一面完成，但角塊的位置可能還沒排好。選「最後配對」繼續。 Yellow orientation is complete. Choose Finish for corner positioning.':selected===10?'白色完成層在底下，接下來才處理上層。現在選「黃色頂面」，比對下一步。 The white layer is below. Choose Yellow to continue.':lesson.group?'檢查白面與四側的同色對；確認後選「把完成的一層翻到底下」。 Check the face and all four side pairs, then choose the whole-cube flip.':selected?'先檢查四格白色，再看側邊是否配對。完成一面不一定等於完成一層。 Check the white face, then side pairs. A face is not always a layer.':'轉動觀看六個面，確認每一面都是同一色。 Look around: every face is one color.';
 $('compactStatus').textContent=$('stepTitle').textContent+' '+(!finished?'→ '+sequence[step].replace("'",'′'):'');
-$('holding').innerHTML=mode==='explore'?'完成狀態：白色朝上、綠色朝前。<br>Solved view: white up, green front.':lesson.group?(selected===10?(finished?'白色朝下 · White down':'準備翻整顆，白色目前朝上。 White is up before the flip.'):'白色朝上，只看這一層的四側。 White up; inspect all four side pairs.'):selected===6?'四格白色朝上，再看側邊。<br>White face up; inspect side pairs.':selected?'白色三格朝上、缺口在右前上；其他顏色可不同。<br>Three whites up; gap at top-front-right. Side colors may differ.':'固定練習局面，保持畫面拿法。<br>Preset exercise: match the shown orientation.';
-$('viewcontrols').classList.toggle('hidden',mode!=='practice');
+$('holding').innerHTML=mode==='explore'?'完成狀態：白色朝上、綠色朝前。<br>Solved view: white up, green front.':lesson.group==='beginner'?'跟著外框的角塊：三個顏色會一起走。<br>Follow the outlined corner; all three colors travel together.':lesson.group==='finish'?'黃色朝上、白色朝下；先看上排配對，再比上下層。<br>Yellow up, white down. Check top pairs, then layer alignment.':lesson.group==='yellow'?'白色完成層朝下；比對黃色頂面和側邊。<br>White layer down; match yellow on top and sides.':lesson.group?(selected===10?(finished?'白色朝下 · White down':'準備翻整顆，白色目前朝上。 White is up before the flip.'):'白色朝上，只看這一層的四側。 White up; inspect all four side pairs.'):selected===6?'四格白色朝上，再看側邊。<br>White face up; inspect side pairs.':selected?'白色三格朝上、缺口在右前上；其他顏色可不同。<br>Three whites up; gap at top-front-right. Side colors may differ.':'固定練習局面，保持畫面拿法。<br>Preset exercise: match the shown orientation.';
+$('viewcontrols').classList.toggle('hidden',mode!=='practice');$('turnCue').textContent=mode!=='practice'?'整顆觀看 ≠ 轉動一層 · Viewing is not a layer turn':finished?'這段完成，檢查實體方塊 · Check your cube':sequence[step]==='x2'?'↻ 整顆上下翻轉 · Flip whole cube':(sequence[step].includes("'")?'↺ ':'↻ ')+sequence[step].replace("'",'′')+' · 方向以正對該面為準 / Viewed directly at that face';draw();$('nextLesson').classList.toggle('hidden',!finished||selected===24||mode!=='practice');$('liveCase').innerHTML=lesson.group==='finish'?fullSides(state):lesson.group==='yellow'?'<p class="small">目前黃色位置 · Current yellow stickers</p>'+yellowNet(state):'';
+if(lesson.group==='custom'){
+ const count=state.filter(f=>f.color===0&&f.n[1]===1).length;
+ $('holding').textContent='保持輸入時的前面與上面；只比對白色，灰色不代表實體色。 Keep your input orientation; match white only.';
+ $('stepTitle').textContent=finished?'白色一面完成！ White face complete!':`上面 ${count} / 4 格白色 · White on top: ${count} / 4`;
+ if(finished)$('stepText').textContent='確認實體上面四格白色，再選第一層並比對側邊。這裡沒有輸入側邊顏色。 Check four whites on your real cube, then choose Layer and match side pairs. Side colors were not entered.';
+ $('compactStatus').textContent=$('stepTitle').textContent+(!finished?' → '+sequence[step]:'');
+}
+renderTurnDiagram();savePractice();
 }
 
-function previewSVG(moves,tilt=.48,colored=false){let st=solved();moves.slice().reverse().map(invert).forEach(m=>apply(st,m));let faces=[];for(let f of st){let v=f.verts.map(p=>rotate(rotate(p,1,-.58),0,tilt));let n=rotate(rotate(f.n,1,-.58),0,tilt);if(n[2]<0)continue;faces.push({v,z:v.reduce((a,p)=>a+p[2],0),c:colored?palette[f.color][1]:(f.color===0?'#ffffff':'#b7c6dc')});}faces.sort((a,b)=>a.z-b.z);return '<svg viewBox="0 0 180 160" role="img" aria-label="白色位置對照圖">'+faces.map(f=>'<polygon points="'+f.v.map(([x,y,z])=>[90+x*45*5/(5-z),80-y*45*5/(5-z)].join(',')).join(' ')+'" fill="'+f.c+'" stroke="#34465f" stroke-width="3" stroke-linejoin="round"/>').join('')+'</svg>';}
+function previewSVG(moves,tilt=.48,colored=false,preset=null){let st=solved();(preset??moves.slice().reverse().map(invert)).forEach(m=>apply(st,m));let faces=[];for(let f of st){let v=f.verts.map(p=>rotate(rotate(p,1,-.58),0,tilt));let n=rotate(rotate(f.n,1,-.58),0,tilt);if(n[2]<0)continue;faces.push({v,z:v.reduce((a,p)=>a+p[2],0),c:colored?palette[f.color][1]:(f.color===0?'#ffffff':'#b7c6dc')});}faces.sort((a,b)=>a.z-b.z);return '<svg viewBox="0 0 180 160" role="img" aria-label="白色位置對照圖">'+faces.map(f=>'<polygon points="'+f.v.map(([x,y,z])=>[90+x*45*5/(5-z),80-y*45*5/(5-z)].join(',')).join(' ')+'" fill="'+f.c+'" stroke="#34465f" stroke-width="3" stroke-linejoin="round"/>').join('')+'</svg>';}
 function chooseCase(i){if(busy)return;playing=false;generation++;selected=i;sequence=lessons[i].moves;setup=lessons[i].preset??sequence.slice().reverse().map(invert);yaw=-.58;pitch=.48;resetState();renderCases();}
 function sidePairsSVG(moves){let st=solved();moves.slice().reverse().map(invert).forEach(m=>apply(st,m));return '<div class="pairstrips">'+[[0,-1,'左 Left'],[2,1,'前 Front'],[0,1,'右 Right'],[2,-1,'後 Back']].map(([axis,sign,label])=>{let f=st.filter(f=>f.p[1]>.1&&f.n[axis]===sign);return '<div><span>'+label+'</span>'+f.map(v=>'<i style="background:'+palette[v.color][1]+'"></i>').join('')+(f[0].color===f[1].color?' ✓':'')+'</div>';}).join('')+'</div>';}
-function renderCases(){let isLayer=!!lessons[selected].group;
-$('faceGroup').classList.toggle('active',!isLayer);$('layerGroup').classList.toggle('active',isLayer);
-$('stageHint').innerHTML=isLayer?'白面完成後，只看白色那一層的側邊。每一側的兩格同色，就算一對；轉動觀看四側，找出 0、1 或 4 對。<br>With white up, count matching pairs on the four sides of that layer: 0, 1 or 4.':'已拼出上面三格白色？先把缺口拿到右前上。若最後一塊在底層其他位置，只轉底層，把它移到右前下，再選圖。<br>Three whites up; gap at top-front-right. Align the last bottom corner below the gap.';
-$('cases').innerHTML=lessons.map((l,i)=>({l,i})).filter(({l})=>!!l.group===isLayer).map(({l,i})=>`<button class="casecard ${selected===i?'selected':''}" aria-pressed="${selected===i}" data-case="${i}">${previewSVG(l.preset??l.moves,.48,isLayer)}${isLayer?sidePairsSVG(l.preset??l.moves):''}${l.under?'<div class="under"><span>從底下看 · Bottom view</span>'+previewSVG(l.moves,-.95)+'</div>':''}<b>${l.title}</b><span>${l.en}</span></button>`).join('');
+function yellowNet(st){let squares=[];for(let f of st){if(f.p[1]<0)continue;let x,z;if(f.n[1]===1){x=f.p[0]>0?2:1;z=f.p[2]>0?2:1;}else if(f.n[2]===1){x=f.p[0]>0?2:1;z=3;}else if(f.n[2]===-1){x=f.p[0]>0?2:1;z=0;}else if(f.n[0]===1){x=3;z=f.p[2]>0?2:1;}else if(f.n[0]===-1){x=0;z=f.p[2]>0?2:1;}else continue;squares.push(`<rect x="${x*27+16}" y="${z*27+18}" width="24" height="24" rx="3" fill="${f.color===1?'#f1cf45':'#b7c6dc'}" stroke="#435472"/>`);}return '<svg viewBox="0 0 140 150" role="img" aria-label="黃色頂面與側邊展開圖">'+squares.join('')+'<text x="70" y="143" text-anchor="middle" fill="#263448" font-size="12">前 Front</text></svg>';}
+function fullSides(st){return '<div class="fullsides">'+[[0,-1,'左 Left'],[2,1,'前 Front'],[0,1,'右 Right'],[2,-1,'後 Back']].map(([axis,sign,label])=>{let faces=st.filter(f=>f.n[axis]===sign).sort((a,b)=>b.p[1]-a.p[1]||(axis===0?a.p[2]-b.p[2]:a.p[0]-b.p[0]));return '<div><span>'+label+'</span><div class="facecells">'+faces.map(f=>'<i style="background:'+palette[f.color][1]+'"></i>').join('')+'</div></div>';}).join('')+'</div>';}
+function renderCases(){let group=lessons[selected].group||'face',isLayer=group==='layer',isYellow=group==='yellow',isFinish=group==='finish',isBegin=group==='beginner';
+$('beginGroup').classList.toggle('active',isBegin);$('faceGroup').classList.toggle('active',group==='face');$('layerGroup').classList.toggle('active',isLayer);$('yellowGroup').classList.toggle('active',isYellow);$('finishGroup').classList.toggle('active',isFinish);
+$('stageHint').innerHTML=isBegin?'這三個練習使用同一個局面，連續學會保留白色、加入下一塊。先找被框起來的小角塊，不用急著背公式。<br>Three connected preset exercises. Follow the outlined cubie and keep earlier white pieces in place.':isFinish?'先確認黃色整面朝上、白色完成層朝下。只數頂層四側的同色對：0 對或 1 對先交換；4 對就直接比上下層顏色，選對齊圖卡。<br>Yellow face up, solved white layer down. With 0 or 1 matching top pair, swap first. With 4 pairs, skip to layer alignment.':isYellow?'白色完成層朝下。每張圖中間是頂面，外圍是側邊最上排；前方標在下緣。只比黃色，其他顏色先忽略。若圖形轉了方向，保持白色朝下，把整顆水平轉向再比對。<br>White down. Center = top; outer tiles = upper side stickers. Front is labeled below. Match yellow, including sides. Rotate the whole cube horizontally to match the diagram.':isLayer?'白面完成後，只看白色那一層的側邊。每一側的兩格同色，就算一對；轉動觀看四側，找出 0、1 或 4 對。<br>With white up, count matching pairs on the four sides of that layer: 0, 1 or 4.':'已拼出上面三格白色？先把缺口拿到右前上。若最後一塊在底層其他位置，只轉底層，把它移到右前下，再選圖。<br>Three whites up; gap at top-front-right. Align the last bottom corner below the gap.';
+$('cases').innerHTML=lessons.map((l,i)=>({l,i})).filter(({l})=>(l.group||'face')===group).map(({l,i})=>`<button class="casecard ${selected===i?'selected':''}" aria-pressed="${selected===i}" data-case="${i}">${group==='custom'?previewSVG([],.48,false,l.preset):isBegin?previewSVG([],.48,true,l.preset):isYellow?yellowNet(startState(l)):isFinish?previewSVG([],.48,true,l.preset):previewSVG(l.preset??l.moves,.48,isLayer)}${isFinish?fullSides(startState(l)):""}${isLayer?sidePairsSVG(l.preset??l.moves):''}${l.under?'<div class="under"><span>從底下看 · Bottom view</span>'+previewSVG(l.moves,-.95)+'</div>':''}<b>${l.title}</b><span>${l.en}</span></button>`).join('');
 $('cases').querySelectorAll('button').forEach(b=>b.onclick=()=>chooseCase(Number(b.dataset.case)));
 $('caseIntro').textContent=lessons[selected].intro;$('caseEnglish').textContent=lessons[selected].english;
 $('setupNote').textContent=setup.length?'家長練習設定：從完成狀態做 '+setup.join(' ').replaceAll("'",'′')+'。 Parent setup from solved: '+setup.join(' ')+'.':'從完成狀態觀察。 Begin with a solved cube.';
-$('matchNote').textContent=isLayer?'比較同色對的位置，不必與示範的顏色完全一樣。請自行檢查實體方塊。 Match the positions of matching pairs, not the exact colors. Check your physical cube yourself.':'比較白色位置，其他顏色可不同。請自行檢查實體方塊。 Match white-sticker positions; other colors may differ. Check your own cube.';
+$('matchNote').textContent=isBegin?'這是練習局面，不是所有打亂的共同解法。完成第三塊後，下一階段示範會載入第一面最後一塊的對照圖；請重新比對實體。 These are preset exercises. Re-match your physical cube before using a last-corner case.':isFinish?'比較同色對和上下層的相對位置，不必與圖卡使用完全相同的側面顏色。看四側小圖確認前、後、左、右。 Match the relative pair and layer positions, not the exact side colors.':isYellow?'相同的頂面黃格數可能是不同情況，側邊也必須一致。動畫做完後請檢查自己的方塊。 Same number of yellow top stickers can mean different cases; match the sides too.':isLayer?'比較同色對的位置，不必與示範的顏色完全一樣。請自行檢查實體方塊。 Match the positions of matching pairs, not the exact colors. Check your physical cube yourself.':'比較白色位置，其他顏色可不同。請自行檢查實體方塊。 Match white-sticker positions; other colors may differ. Check your own cube.';
+if(group==='custom'){
+ $('stageHint').textContent='依你的四格白色產生步驟；灰色都是未指定顏色。 Steps use your four white positions; gray is unspecified.';
+ $('setupNote').textContent='不需要從完成狀態重做設定。使用剛才輸入的實體局面。 No setup scramble needed; use the cube you entered.';
+ $('matchNote').textContent='分段完成白色一面；不代表側邊已配好。停下檢查後可按播放繼續。 Each pause is a checkpoint. Completing white does not guarantee side pairs.';
+}
 }
 
+function startState(l){let st=solved();(l.preset??l.moves.slice().reverse().map(invert)).forEach(m=>apply(st,m));return st;}
 let generation=0;
-async function turn(m){busy=true;update();let info=moveInfo(m),start=performance.now();await new Promise(resolve=>{function frame(now){let t=Math.min(1,(now-start)/1000);animation={...info,a:info.angle*(t*t*(3-2*t))};draw();if(t<1)requestAnimationFrame(frame);else resolve();}requestAnimationFrame(frame)});apply(state,m);animation=null;busy=false;draw();}
-function resetState(){state=solved();if(mode==='practice')setup.forEach(m=>apply(state,m));step=0;draw();update();}
+async function turn(m){busy=true;update();try{if(originalCube)await originalCube.move(m);apply(state,m);}finally{busy=false;draw();}}
+
+function resetState(){state=solved();if(mode==='practice')setup.forEach(m=>apply(state,m));step=0;syncOriginal();draw();update();}
 function setMode(m){if(busy)return;playing=false;generation++;mode=m;$('explore').classList.toggle('hidden',m!=='explore');$('practice').classList.toggle('hidden',m!=='practice');for(let [id,v] of [['exploreTab','explore'],['practiceTab','practice']]){$(id).classList.toggle('active',v===m);$(id).setAttribute('aria-pressed',String(v===m));}yaw=-.58;pitch=.48;resetState();}
-$('faceGroup').onclick=()=>chooseCase(0);$('layerGroup').onclick=()=>chooseCase(7);
-$('exploreTab').onclick=()=>setMode('explore');$('practiceTab').onclick=$('start').onclick=()=>setMode('practice');
+$('beginGroup').onclick=()=>chooseCase(25);$('tracking').onclick=()=>{showTracking=!showTracking;$('tracking').setAttribute('aria-pressed',String(showTracking));$('tracking').textContent=showTracking?'角塊追蹤：開 · Tracking on':'角塊追蹤：關 · Tracking off';draw();savePractice();};
+$('faceGroup').onclick=()=>chooseCase(0);$('layerGroup').onclick=()=>chooseCase(7);$('yellowGroup').onclick=()=>chooseCase(11);$('finishGroup').onclick=()=>chooseCase(19);$('nextLesson').onclick=()=>chooseCase(selected===28?7:selected===25?26:selected===26?27:selected===27?1:selected===0?25:selected<7?7:selected<10?10:selected===10?11:selected<19?19:selected<21?21:24);
+$('exploreTab').onclick=()=>setMode('explore');$('practiceTab').onclick=()=>setMode('practice');$('start').onclick=()=>{setMode('practice');chooseCase(25);};
 $('next').onclick=async()=>{if(busy||step>=sequence.length)return;await turn(sequence[step]);step++;update();};
 $('prev').onclick=async()=>{if(busy||!step)return;let m=sequence[step-1];await turn(invert(m));step--;update();};
 $('compactNext').onclick=()=> $('next').onclick();$('compactPrev').onclick=()=> $('prev').onclick();
 $('reset').onclick=()=>{if(!busy){playing=false;generation++;resetState();}};
-$('play').onclick=async()=>{if(playing){playing=false;generation++;update();return;}if(busy||!sequence.length)return;if(step===sequence.length)resetState();playing=true;const token=++generation;update();while(playing&&step<sequence.length&&token===generation){await turn(sequence[step]);step++;if(lessons[selected].transition===step){playing=false;update();break;}update();await new Promise(r=>setTimeout(r,650));}if(token===generation)playing=false;update();};
+$('play').onclick=async()=>{if(playing){playing=false;generation++;update();return;}if(busy||!sequence.length)return;if(step===sequence.length)resetState();playing=true;const token=++generation;update();while(playing&&step<sequence.length&&token===generation){await turn(sequence[step]);step++;if(lessons[selected].transition===step||(lessons[selected].checkpoints||[]).includes(step)){playing=false;update();break;}update();await new Promise(r=>setTimeout(r,playbackMs===1600?1000:playbackMs===450?350:650));}if(token===generation)playing=false;update();};
 $('view').onclick=()=>{yaw=-.58;pitch=.48;draw()};$('bottom').onclick=()=>{yaw=-.58;pitch=-.9;draw()};
-let drag=null;canvas.onpointerdown=e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)};canvas.onpointermove=e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.009;pitch=Math.max(-1.5,Math.min(1.5,pitch+(e.clientY-drag[1])*.009));drag=[e.clientX,e.clientY];draw()};canvas.onpointerup=canvas.onpointercancel=()=>drag=null;canvas.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();yaw+=e.key==='ArrowLeft'?-.15:e.key==='ArrowRight'?.15:0;pitch=Math.max(-1.5,Math.min(1.5,pitch+(e.key==='ArrowUp'?-.15:e.key==='ArrowDown'?.15:0)));draw()};new ResizeObserver(draw).observe(canvas);renderCases();update();draw();
+
+// White-position planner: 24 geometric slots, one white per corner maximum.
+const whiteSlots=solved(),whiteMoves=['R',"R'",'U',"U'",'D',"D'",'F',"F'"];
+const slotKey=f=>f.p.join(',')+'/'+f.n.join(',');
+const whitePerms=whiteMoves.map(m=>{let st=solved();apply(st,m);return st.map(f=>whiteSlots.findIndex(g=>slotKey(g)===slotKey(f)));});
+const whiteKey=a=>a.slice().sort((a,b)=>a-b).join(',');
+const upperWhite=a=>a.filter(i=>whiteSlots[i].n[1]===1);
+function validateWhites(a){return a.length===4&&new Set(a).size===4&&a.every(i=>Number.isInteger(i)&&i>=0&&i<24)&&new Set(a.map(i=>whiteSlots[i].p.map(Math.sign).join(','))).size===4;}
+function planWhites(input){
+ if(!validateWhites(input))throw Error('請選 4 格白色，而且同一角塊只能有 1 格白色。 Select four whites, at most one per corner.');
+ let current=input.slice(),moves=[],checkpoints=[];
+ while(upperWhite(current).length<4){
+  const keep=upperWhite(current),queue=[current],seen=new Map([[whiteKey(current),null]]);let goal=null;
+  for(let head=0;head<queue.length&&!goal;head++)for(let m=0;m<whiteMoves.length;m++){
+   let next=queue[head].map(i=>whitePerms[m][i]),key=whiteKey(next);if(seen.has(key))continue;
+   seen.set(key,{prev:whiteKey(queue[head]),move:whiteMoves[m]});queue.push(next);
+   if(upperWhite(next).length>keep.length&&keep.every(i=>next.includes(i))){goal=next;break;}
+  }
+  if(!goal)throw Error('無法完成，請重新檢查輸入。 Please check the input.');
+  let segment=[],key=whiteKey(goal);while(seen.get(key)){let link=seen.get(key);segment.push(link.move);key=link.prev;}
+  moves.push(...segment.reverse());checkpoints.push(moves.length);current=goal;
+ }
+ return {moves,checkpoints:checkpoints.slice(0,-1)};
+}
+const inputFaces=[
+ ['上 Up',1,1,[1,0,0],[0,0,-1],2,1],['左 Left',0,-1,[0,0,1],[0,1,0],1,2],
+ ['前 Front',2,1,[1,0,0],[0,1,0],2,2],['右 Right',0,1,[0,0,-1],[0,1,0],3,2],
+ ['後 Back',2,-1,[-1,0,0],[0,1,0],4,2],['下 Down',1,-1,[1,0,0],[0,0,1],2,3]
+];
+let enteredWhites=new Set();
+function renderWhiteInput(){const dot=(p,v)=>p.reduce((a,n,i)=>a+n*v[i],0);
+ $('whiteNet').innerHTML=inputFaces.map(([name,axis,sign,h,v,col,row])=>{let slots=whiteSlots.map((f,i)=>({f,i})).filter(({f})=>f.n[axis]===sign).sort((a,b)=>dot(b.f.p,v)-dot(a.f.p,v)||dot(a.f.p,h)-dot(b.f.p,h));return `<div class="white-face" style="grid-column:${col};grid-row:${row}">${name}<div class="tiles">${slots.map(({i},j)=>`<button data-white="${i}" aria-label="${name} ${j<2?'上 Top':'下 Bottom'} ${j%2?'右 Right':'左 Left'}" aria-pressed="${enteredWhites.has(i)}">${enteredWhites.has(i)?'白 W':'·'}</button>`).join('')}</div></div>`;}).join('');
+ $('whiteCount').textContent=`已選 ${enteredWhites.size} / 4 格白色 · ${enteredWhites.size} / 4 selected`;
+ $('whiteNet').querySelectorAll('button').forEach(b=>b.onclick=()=>{if(busy||playing)return;let i=Number(b.dataset.white);enteredWhites.has(i)?enteredWhites.delete(i):enteredWhites.add(i);$('whiteError').textContent='';renderWhiteInput();});
+}
+function loadWhitePlan(){if(busy||playing)return;try{let plan=planWhites([...enteredWhites]);let l={title:'我的白色一面',en:'My white face',group:'custom',...plan,intro:'每小段結束後，上面的白色會增加。中途可能暫時移開，請完成該段再檢查。',english:'Each segment adds white stickers on top. Earlier whites may move temporarily; finish the segment before checking.'};l.preset=l.moves.slice().reverse().map(invert);if(lessons[28])lessons[28]=l;else lessons.push(l);chooseCase(28);$('whiteError').textContent='步驟已準備好。依輸入時的前面與上面拿好。 Ready. Hold the original front and top.';}catch(e){$('whiteError').textContent=e.message;}}
+$('whiteClear').onclick=()=>{if(busy||playing)return;enteredWhites.clear();$('whiteError').textContent='';renderWhiteInput();};
+$('whiteExample').onclick=()=>{if(busy||playing)return;const st=startState(lessons[25]);enteredWhites=new Set(st.filter(f=>f.color===0).map(f=>whiteSlots.findIndex(g=>slotKey(g)===slotKey(f))));$('whiteError').textContent='示例已載入，並非你的實體位置。 Example loaded; replace with your actual whites.';renderWhiteInput();};
+$('whitePlan').onclick=loadWhitePlan;
+renderWhiteInput();
+
+
+// The observer looks directly at the turning face. h = screen right, v = screen up.
+const guideFaces={
+ R:{axis:0,sign:1,h:[0,0,-1],v:[0,1,0],name:'右面 · Right',edge:'上面 Up'},
+ U:{axis:1,sign:1,h:[1,0,0],v:[0,0,-1],name:'上面 · Up',edge:'後面 Back'},
+ D:{axis:1,sign:-1,h:[1,0,0],v:[0,0,1],name:'底面 · Down',edge:'前面 Front'},
+ F:{axis:2,sign:1,h:[1,0,0],v:[0,1,0],name:'前面 · Front',edge:'上面 Up'}
+};
+function faceGuideCells(st,face){const dot=(p,v)=>p.reduce((a,x,i)=>a+x*v[i],0),b=guideFaces[face];return st.filter(f=>f.n[b.axis]===b.sign).slice().sort((a,c)=>dot(c.p,b.v)-dot(a.p,b.v)||dot(a.p,b.h)-dot(c.p,b.h));}
+function faceGuideSVG(st,m,arrow,whiteOnly){
+ const b=guideFaces[m[0]],cells=faceGuideCells(st,m[0]),names=['白 W','黃 Y','紅 R','橘 O','綠 G','藍 B'];
+ const tiles=cells.map((f,i)=>{let unknown=whiteOnly&&f.color!==0;return `<rect x="${62+i%2*51}" y="${62+Math.floor(i/2)*51}" width="46" height="46" rx="5" fill="${unknown?'#aeb9ca':palette[f.color][1]}" stroke="#263448" stroke-width="2"/><text x="${85+i%2*51}" y="${90+Math.floor(i/2)*51}" text-anchor="middle" fill="#182637" font-size="13">${unknown?'—':names[f.color]}</text>`;}).join('');
+ const arc=arrow?`<g ${m.includes("'")?'transform="translate(220 0) scale(-1 1)"':''}><path d="M110 19 A91 91 0 0 1 201 110" fill="none" stroke="#263448" stroke-width="6"/><path d="M191 102 L201 119 L211 102 Z" fill="#263448"/></g>`:'';
+ return `<svg viewBox="0 0 220 205" role="img" aria-label="${b.name} ${arrow?'轉動前 Before turn':'轉動後 After turn'}"><text x="110" y="48" text-anchor="middle" font-size="12" fill="#263448">接 ${b.edge}</text>${tiles}${arc}<text x="110" y="183" text-anchor="middle" font-size="12" fill="#263448">${arrow?(m.includes("'")?'逆時針 CCW':'順時針 CW'):'完成 90° · Done'}</text></svg>`;
+}
+function renderTurnDiagram(){
+ if(mode!=='practice'||step>=sequence.length){$('turnDiagram').innerHTML='';return;}
+ const m=sequence[step];
+ if(m==='x2'){$('turnDiagram').innerHTML='<h2>整顆翻面 · Whole-cube flip</h2><p>雙手拿整顆，上下翻半圈，讓白色完成層到下面。這一步不是只轉一層。<br>Hold the whole cube and flip it halfway so the solved white layer faces down.</p>';return;}
+ const after=state.map(f=>({p:f.p.slice(),n:f.n.slice(),verts:f.verts.map(v=>v.slice()),color:f.color}));apply(after,m);
+ const whiteOnly=lessons[selected].group==='custom',b=guideFaces[m[0]];
+ $('turnDiagram').innerHTML=`<h2>${m.replace("'",'′')}：正對${b.name}</h2><p>把目光移到要轉的那一面，依箭頭轉四分之一圈。上緣標示幫你對準方向。<br>Look directly at this face and turn a quarter circle. Use the labeled top edge to orient the view.</p><div class="turn-faces"><figure>${faceGuideSVG(state,m,true,whiteOnly)}<figcaption>轉動前 · Before</figcaption></figure><figure>${faceGuideSVG(after,m,false,whiteOnly)}<figcaption>轉動後 · After</figcaption></figure></div><p>${whiteOnly?'只比白色；灰色未指定。 Match white only; gray is unspecified.':'顏色是本練習的示範；實體以拿法和位置為準。 Colors belong to this example; match the holding position.'}</p>`;
+}
+
+const interaction=$('cubeStage');let drag=null;interaction.onpointerdown=e=>{drag=[e.clientX,e.clientY];interaction.setPointerCapture(e.pointerId)};interaction.onpointermove=e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.009;pitch=Math.max(-1.5,Math.min(1.5,pitch+(e.clientY-drag[1])*.009));drag=[e.clientX,e.clientY];draw()};interaction.onpointerup=interaction.onpointercancel=()=>drag=null;interaction.onkeydown=e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();yaw+=e.key==='ArrowLeft'?-.15:e.key==='ArrowRight'?.15:0;pitch=Math.max(-1.5,Math.min(1.5,pitch+(e.key==='ArrowUp'?-.15:e.key==='ArrowDown'?.15:0)));draw()};originalCube=new Cube($('originalCube'),{n:2,static:true});originalCube.turnMs=900;new ResizeObserver(()=>{if(busy)return;const size=$('cubeStage').clientWidth/3.15;if(Math.abs(size-originalCube.C)>1){originalCube.C=size;originalCube.sc=size/2;syncOriginal();}draw();}).observe($('cubeStage'));renderCases();update();draw();
+
+function makePracticeRecord(){
+ let custom=null;if(selected===28)custom=startState(lessons[28]).filter(f=>f.color===0).map(f=>whiteSlots.findIndex(g=>slotKey(g)===slotKey(f)));
+ return {version:1,mode,selected,step,speed:playbackMs,tracking:showTracking,custom};
+}
+function checkedPracticeRecord(r){
+ if(!r||r.version!==1||!['explore','practice'].includes(r.mode)||!Number.isInteger(r.selected)||r.selected<0||r.selected>28||!Number.isInteger(r.step)||r.step<0||![450,900,1600].includes(r.speed)||typeof r.tracking!=='boolean')return null;
+ if(r.selected===28&&(!Array.isArray(r.custom)||!validateWhites(r.custom)))return null;
+ let length=r.selected===28?planWhites(r.custom).moves.length:lessons[r.selected].moves.length;
+ if(r.step>length||(r.mode==='explore'&&r.step!==0))return null;
+ return r;
+}
+function savePractice(){
+ if(!saveReady||busy)return;
+ try{localStorage.setItem(practiceStorageKey,JSON.stringify(makePracticeRecord()));pendingResume=null;$('resumeBanner').classList.add('hidden');$('saveStatus').textContent='已記住這一步（此瀏覽器） · Step saved in this browser';}
+ catch(e){$('saveStatus').textContent='此瀏覽器無法保存進度；本次仍可練習。 Progress saving is unavailable; practice still works.';}
+}
+function findSavedPractice(){
+ try{let raw=localStorage.getItem(practiceStorageKey);if(!raw)return;pendingResume=checkedPracticeRecord(JSON.parse(raw));if(!pendingResume){$('saveStatus').textContent='舊進度無法讀取，請重新選擇練習。 Saved progress could not be read; choose a lesson.';return;}
+ $('resumeDescription').textContent=`找到上次練習：${pendingResume.selected===28?'我的白色一面 / My white face':lessons[pendingResume.selected].title}，完成 ${pendingResume.step} 步。 Saved: ${pendingResume.step} moves completed.`;$('resumeBanner').classList.remove('hidden');
+ }catch(e){$('saveStatus').textContent='未能讀取先前進度；仍可開始練習。 Previous progress unavailable; you can still practice.';}
+}
+function resumePractice(){
+ if(busy||!pendingResume)return;const r=pendingResume;saveReady=false;
+ if(r.selected===28){enteredWhites=new Set(r.custom);renderWhiteInput();loadWhitePlan();}
+ chooseCase(r.selected);setMode(r.mode);step=r.step;state=solved();if(mode==='practice')[...setup,...sequence.slice(0,step)].forEach(m=>apply(state,m));
+ playbackMs=r.speed;originalCube.turnMs=playbackMs;$('speed').value=String(playbackMs);showTracking=r.tracking;$('tracking').setAttribute('aria-pressed',String(showTracking));$('tracking').textContent=showTracking?'角塊追蹤：開 · Tracking on':'角塊追蹤：關 · Tracking off';
+ playing=false;syncOriginal();renderCases();update();saveReady=true;savePractice();
+}
+$('resumePractice').onclick=resumePractice;
+$('freshPractice').onclick=()=>{if(busy)return;pendingResume=null;savePractice();};
+$('speed').onchange=()=>{if(busy){$('speed').value=String(playbackMs);return;}const n=Number($('speed').value);if(![450,900,1600].includes(n))return;playbackMs=n;originalCube.turnMs=n;savePractice();};
+findSavedPractice();saveReady=true;
+
 </script></body></html>

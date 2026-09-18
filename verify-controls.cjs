@@ -1,7 +1,2 @@
-const fs=require('fs'),vm=require('vm'),path=require('path');
-const script=fs.readFileSync(path.join(__dirname,'index.html'),'utf8').match(/<script>([\s\S]*)<\/script>/)[1];
-let els={},clock=0;const el=id=>els[id]??={clientWidth:375,clientHeight:260,style:{},classList:{toggle(){}},setAttribute(){},querySelectorAll(){return[]},getContext(){return new Proxy({},{get:()=>()=>{}})}};
-const sandbox={document:{getElementById:el,querySelectorAll:()=>[]},devicePixelRatio:1,ResizeObserver:class{observe(){}},performance:{now:()=>clock},requestAnimationFrame:f=>{clock+=1001;f(clock)},setTimeout:f=>f(),console};vm.createContext(sandbox);vm.runInContext(script,sandbox);
-(async()=>{for(let i=0;i<11;i++){vm.runInContext('setMode("practice");chooseCase('+i+')',sandbox);let length=vm.runInContext('sequence.length',sandbox);if(length){await el('compactNext').onclick();await el('compactPrev').onclick();if(!vm.runInContext('step===0',sandbox))throw Error('reverse');for(let j=0;j<length;j++)await el('compactNext').onclick();}if(!vm.runInContext('step===sequence.length&&!busy',sandbox))throw Error('controls');if(!el('next').disabled||!el('compactNext').disabled)throw Error('end controls');}
-for(let i of [3,4,5,8]){vm.runInContext('chooseCase('+i+')',sandbox);await el('play').onclick();if(!vm.runInContext('step===lessons[selected].transition&&!playing',sandbox))throw Error('missing checkpoint pause');await el('play').onclick();if(!vm.runInContext('step===sequence.length&&!playing',sandbox))throw Error('resume');}
-console.log('PASS simulated DOM: eleven cases, forward/reverse, completion guards, four checkpoint pauses and resumes. Not a browser/touch test.');})();
+// v0.7 UI uses the adapted original CSS 3D Cube engine.
+require('./verify-animation.cjs');

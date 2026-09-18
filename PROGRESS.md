@@ -1,5 +1,5 @@
-# 小小方塊 Little Cube — v0.3
-Checkpoint: 2026-09-18. Continues v0.2; v0.1/v0.2 preserved.
+# 小小方塊 Little Cube — v0.4
+Checkpoint: 2026-09-18. Continues v0.3; all earlier versions preserved.
 
 ## Open / 開啟
 Unzip, then open index.html in a desktop browser. No installation or network dependencies. Upload index.html to your chosen GitHub Pages publishing directory for a public website; this version has NOT been published.
@@ -27,7 +27,7 @@ v0.3 cloud Browser skill successfully connected through node_repl, but navigatio
 
 ## Not completed / 尚未完成
 - Guided first one/two/three corner practice; highlighted individual corner tracking.
-- First-layer side matching and whole-cube flip demonstration.
+- First-layer side matching and whole-cube flip are implemented in v0.4 (see below).
 - Second-layer orientation/permutation cases, full progressive lessons, voice.
 - Original Claude animation code integration. Current renderer is independently written Canvas, not claimed to reuse Claude code.
 - GitHub deployment and real-device QA.
@@ -45,4 +45,20 @@ Reference text was read in v0.2. GIF retrieval returned 403. Current cards and t
 Preserve older versions. Deliver each bounded milestone before expanding. Never restart from scratch. Do not claim old reports of 21 complete cards/tests were recovered.
 
 ## Next bounded milestone / 下一步
-Add first-layer side matching with explicit recognition, setup, verified swaps and face-versus-layer comparison. Then save/deliver v0.4 before adding second-layer cases. Use a permitted preview route if available; do not delay checkpoints indefinitely for browser tooling.
+Next: add second-layer orientation cases with a complete case map, explicit holding direction, and transitions. Save/deliver the next milestone before expanding further. Browser restrictions remain unresolved.
+
+## v0.4 completed / 本版完成
+- Separate First Face and First Layer groups, preserving all earlier cases.
+- One matching pair: hold it on LEFT, white up; use the repeated corner-swap algorithm.
+- No matching pairs: swap, U U to align, pause, repeat swap.
+- Four matching pairs: completed-layer check.
+- x2 whole-cube flip demonstration, including reverse-step control.
+- Full-color diagrams plus four labeled side-pair strips.
+- The swap used here is independently verified T-permutation: R U R' U' R' F R R U' R' U' R U R' F'. It has NOT been visually matched to the original MARU GIF sequence; do not claim exact formula equivalence to that source. Layer-by-layer structure is retained.
+
+## v0.4 verification
+- All 24 top-corner permutations: 4 zero-pair states, 16 one-pair states, 4 already matched states; appropriate setup and algorithms complete the layer.
+- Whole-cube flip puts all white stickers below; its inverse restores the state.
+- 149 matching first-face states and transition checks retained.
+- Eleven UI examples, forward/reverse, completion guards and four playback checkpoint pause/resume paths passed mock-DOM tests.
+- Real browser rendering and actual phone testing remain unverified; prior URL-policy restriction is unchanged. No further blocked browser attempts made.

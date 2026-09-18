@@ -1,3 +1,5 @@
-Coverage [ 36, 31, 28, 25, 29 ]
-PASS syntax, move identities, all seven examples, independent legal matching cases: [ 36, 31, 28, 25, 29 ]
-PASS simulated DOM: seven cases, forward/reverse, completion guards, three checkpoint pauses and resumes. Not a browser/touch test.
+PASS: all 24 top-corner permutations (zero:4, one:16, four:4), whole-cube flip and inverse.
+PASS: 149 matching first-face legal states, transitions and move identities.
+PASS: eleven inverse-sequence examples.
+PASS: simulated DOM eleven cases, forward/reverse, guards, four checkpoint pauses/resumes.
+NOT RUN: real browser rendering / phone testing (documented preview restriction).

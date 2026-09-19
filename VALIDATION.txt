@@ -1,3 +1,7 @@
+v0.11: PASS verify-voice.cjs (mock synthesis), verify-animation.cjs, verify-resume.cjs, verify-directions.cjs.
+Live desktop v0.10 checks now completed for selected flows; see LIVE-QA.md. v0.11 audible speech, mobile hardware, narrow layout and child usability are not yet verified.
+
+Prior results:
 v0.10 checks:
 PASS verify-directions.cjs: all eight R/U/D/F quarter-turn directions agree with sticker permutation; preview is non-mutating; whole flip separate; custom colors hidden; finished/explore guides clear.
 PASS verify-animation.cjs and verify-resume.cjs re-run.

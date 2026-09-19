@@ -1,8 +1,16 @@
-# 小小方塊 Little Cube — v0.10
-Checkpoint: 2026-09-18. Continues v0.9; all earlier ZIPs preserved.
+# 小小方塊 Little Cube — v0.11
+Checkpoint: 2026-09-19. Continues v0.10; all earlier ZIPs preserved.
 
 ## Open / 開啟
 Unzip and open index.html in a desktop browser. Pure static, no external network dependency. For GitHub Pages, use index.html as the publishing directory entry point. This package has not been published by the assistant.
+
+## v0.11 checkpoint / 本次新增
+- Slow device speech: zh-TW / en-US, default rate 0.70; choices 0.55 / 0.70 / 0.85. User enables speech explicitly; no automatic speech on reload.
+- Manual read of current lesson/instruction. With step narration enabled, Next, Previous and autoplay wait for the narration before the corresponding turn. Previous explains the inverse turn.
+- Voice pause/resume, stop, failure message and unsupported-browser fallback. Stop cancels pending turns and autoplay. Errors do not silently advance a move. Voice is provided by the OS/browser and quality/language availability varies.
+- Moved nearby Previous/Next controls immediately below the cube cue, above longer diagrams/settings, so the user need not scroll through all explanations to turn.
+- New verify-voice.cjs covers sequencing/cancellation/errors/languages/rates using mocked synthesis. Actual audible voice remains unverified until this version is uploaded and tried on the device.
+- User supplied public v0.10 site: https://juliechang0520.github.io/cube-2x2/ . Desktop browser checks performed; see LIVE-QA.md. v0.11 is delivered locally, not yet uploaded by the assistant.
 
 ## v0.10 checkpoint / 本次新增
 - Face-on before/after diagrams for R, U, D, F and their inverse turns, with quarter-circle direction arrows.
@@ -51,11 +59,11 @@ Unzip and open index.html in a desktop browser. Pure static, no external network
 - verify.cjs, verify-layer.cjs, verify-yellow.cjs retained for math checks.
 
 ## Remaining / 未完成
-- Real browser screenshots, desktop/mobile RWD and touch QA. Earlier cloud-browser navigation to a local data URL was explicitly blocked by browser URL policy. Do not retry the blocked action or use an indirect workaround. A permitted preview route is needed.
+- Desktop v0.10 live rendering and selected interaction flows now checked via user-provided public URL; v0.11 voice/new layout not yet checked live. Physical mobile/touch/audio and child usability acceptance remain. No supported mobile viewport control was exposed in this browser session. Do not bypass the earlier local-data-URL security restriction.
 - First-face arbitrary white-position guidance is implemented in v0.8. Child usability of the six-face input still needs real testing.
-- Voice narration; child usability still requires testing. Face-on quarter-circle arrows implemented in v0.10; three playback speeds in v0.9.
+- Voice implemented in v0.11; physical-device audibility and pause/resume behavior still need acceptance. Child usability testing remains.
 - Exact image-by-image MARU formula matching has not been completed. The layer-by-layer structure is retained, but case diagrams/text are original and formulas independently checked. The repeated corner swap is T-permutation, not claimed to match MARU's original GIF sequence exactly.
-- GitHub publishing has not been performed by the assistant. The user may upload the file themselves.
+- User deployed v0.10 successfully. Replace its index.html with v0.11 to publish the voice update; the assistant has not modified the repository.
 
 ## Sources / 來源
 Original animation retrieved from https://juliechang0520.github.io/RubiksCube/ on 2026-09-18.

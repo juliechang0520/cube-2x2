@@ -8,6 +8,17 @@
 6. 跟著「下一步」逐步做，或播放到自動停下的檢查點。完成整段再數白色；中途原有的白色可能暫時移開。Use Next or Play. Count whites after each complete segment; earlier whites may move temporarily.
 7. 四格白色朝上後，選第一層並依實體側邊重新比對。Once all whites face up, choose Layer and match the actual side pairs.
 
+## v0.11 慢速語音 / Slow narration
+
+展開魔方下方「慢速語音說明」，點「開啟逐步語音」。預設中文、0.7 倍；可選 0.55 倍更慢，或切換英文。按下一步／上一步／播放，會先說明才轉動。「聽目前說明」只朗讀，不轉動。「停止語音」取消待執行動作並停止連續播放。
+Open Slow narration and enable it. Default is Chinese at 0.7×; choose 0.55× for extra slow or switch to English. Moves wait for narration. Read instructions speaks without moving. Stop voice cancels pending moves and autoplay.
+
+裝置必須有可用的系統聲音；不同手機與瀏覽器音色不同。若無聲或語音失敗，可停止並關閉語音，繼續用文字與動畫。
+Requires an available device voice; sound varies by browser/phone. If speech fails, stop and disable narration to continue with text and animation.
+
+上線更新：以此 ZIP 的 index.html 取代 GitHub 專案的同名檔，網站版本應顯示 v0.11。此包沒有自動修改你的 GitHub。
+To publish, replace your repository's index.html with this package's file. The page should show v0.11. This package does not automatically update GitHub.
+
 ## v0.10 方向圖 / Direction diagrams
 
 每一步會顯示要轉那一面的「轉動前／轉動後」和箭頭。先對齊上緣標示，再正對該面判斷順／逆時針。底面的圖是從底下正對著看；整顆翻面有另外的文字說明。
@@ -23,7 +34,7 @@ Each step shows a face-on before/after diagram and arrow. Orient the labeled top
 
 - 真實桌面瀏覽器畫面、手機尺寸與觸控操作驗收。Desktop rendering, responsive layout and physical phone/touch QA.
 - 與 MARU 原始 GIF 逐張核對公式和圖卡；目前公式已獨立驗算，但未宣稱與原 GIF 完全相同。Image-by-image MARU reference matching.
-- 語音說明、GitHub 上線。Voice narration and GitHub deployment.
+- v0.11 語音已加入，仍需更新線上檔案並實機試聽。Narration is included; upload v0.11 and verify device audio.
 - 兒童對六面輸入與方向圖的易用性測試。Child usability testing for the six-face input and direction diagrams.
 
 ## 續作紀錄 / Resume
